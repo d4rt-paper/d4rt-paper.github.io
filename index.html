@@ -440,12 +440,17 @@
             gap: 10px;
         }
         .capabilities-images img {
-            flex: 1;
             min-width: 0;
             height: auto;
             display: block;
             margin: 0 auto;
             max-width: 100%;
+        }
+        .capabilities-images img[src*="D4RT_capabilities_left"] {
+            flex: 774 1 0;
+        }
+        .capabilities-images img[src*="D4RT_capabilities_right"] {
+            flex: 883 1 0;
         }
 
         .collapsible:hover:not(.active) {
