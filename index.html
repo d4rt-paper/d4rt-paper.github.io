@@ -1,0 +1,2174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HF8497S7CK"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-HF8497S7CK');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D4RT</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎯</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            /* DESKTOP DIMENSIONS */
+            --btn-height: 38px;
+            --btn-gap: 6px;
+            --img-size: calc((var(--btn-height) * 2) + var(--btn-gap));
+            /* MOBILE DIMENSIONS */
+            --btn-height-mobile: 30px;
+            --btn-gap-mobile: 4px;
+            --img-size-mobile: calc((var(--btn-height-mobile) * 2) + var(--btn-gap-mobile));
+        }
+
+        body {
+            font-family: 'Google Sans', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 960px;
+            margin: 40px auto;
+            padding: 0 20px;
+            background-color: #fff;
+        }
+        h1, h2 {
+            color: #202124;
+            text-align: center;
+            font-weight: 500;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+        }
+        h2 {
+            font-size: 1.8em;
+            margin-top: 1.5em;
+            margin-bottom: 1em;
+        }
+        .authors {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 1em;
+            color: #3c4043;
+        }
+        .authors span {
+            display: inline-block;
+            margin: 0 5px;
+            white-space: nowrap;
+        }
+        .affiliations {
+            text-align: center;
+            font-size: 0.9em;
+            margin-bottom: 30px;
+            color: #5f6368;
+        }
+        .links {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .links a {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 10px 20px;
+            background-color: #1a73e8;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            font-weight: 500;
+        }
+        .links a:hover {
+            background-color: #185abc;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        video {
+            margin-bottom: 10px;
+            width: calc(100% - 20px);
+            display: block;
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+        .chapters {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            margin-bottom: -10px;
+            padding: 0 30px 30px;
+            flex-wrap: wrap;
+        }
+        .chapters button {
+            padding: 5px 7px;
+            border: 3px solid transparent;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s, filter 0.3s, border-color 0.3s, color 0.3s;
+            font-size: 0.82em;
+            color: white;
+            font-weight: 500;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            text-align: center;
+            line-height: 1.3;
+            background-color: #1a73e8;
+            flex: 1 1 100px;
+        }
+        .chapters button:hover:not(.selected) {
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+            filter: brightness(110%);
+        }
+        .chapters button.selected {
+            background-color: #fff;
+            border-color: #1a73e8;
+            color: #1a73e8;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+        .abstract, .citation, .visualization-container, .method, .capabilities, .acknowledgements {
+            background-color: rgba(248, 249, 250, 1);
+            padding: 30px;
+            border-radius: 30px;
+            margin-bottom: 30px;
+            border: 1px solid #e8eaed;
+            transition: padding-bottom 0.1s ease-in-out;
+        }
+        .video-container {
+            background-color: rgba(248, 249, 250, 1);
+            padding: 0;
+            border-radius: 30px;
+            margin-bottom: 30px;
+            border: 1px solid #e8eaed;
+            overflow: hidden;
+        }
+        .abstract h2, .citation h2, .visualization-container h2, .method h2, .capabilities h2, .acknowledgements h2 {
+            margin-top: 0;
+            text-align: left;
+            font-size: 1.5em;
+        }
+        .abstract p, .method p, .capabilities p, .acknowledgements p {
+            text-align: justify;
+            font-size: 0.92em;
+        }
+        .visualization {
+            text-align: center;
+            padding: 0;
+            border-radius: 30px;
+            border: 1px solid #e8eaed;
+            background-color: #fff;
+            position: relative;
+            height: 450px;
+            overflow: hidden;
+        }
+        #message {
+            position: absolute;
+            display: flex;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+            z-index: 2;
+            height: 100%;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: large;
+            color: grey;
+            pointer-events: none;
+            text-align: center;
+        }
+        #canvas {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            touch-action: none;
+            border-radius: 30px;
+            z-index: 1;
+        }
+        #timeline {
+            display: none; 
+            position: absolute; 
+            bottom: 20px; 
+            left: 10%; 
+            width: 80%; 
+            z-index: 999; 
+            text-align: center;
+        }
+        button.icon-button {
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            color: #1a73e8;
+            font-size: 1.1em;
+            vertical-align: middle;
+            cursor: pointer;
+            padding: 2px 8px;
+            margin: 0 2px;
+            line-height: 1.5;
+        }
+        button.icon-button:hover {
+            background:  rgba(248, 249, 250, 1);
+        }
+        #play-pause {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            padding: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            vertical-align: middle;
+        }
+        #play-pause span {
+            display: inline-block;
+            line-height: 1;
+        }
+        #play-pause.paused span {
+            transform: translate(1px, 1px);
+            font-size: 0.9em;
+        }
+        #frame-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 60%;
+            height: 6px;
+            background:  #ddd;
+            border-radius: 3px;
+            outline: none;
+            margin: 0 5px;
+            vertical-align: middle;
+        }
+        #frame-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #1a73e8;
+            cursor: pointer;
+        }
+        #frame-slider::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #1a73e8;
+            cursor: pointer;
+        }
+        .citation pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 30px;
+            overflow-x: auto;
+            border: 1px solid #e8eaed;
+            font-size: 0.9em;
+            color: #3c4043;
+        }
+        sup {
+            line-height: 0;
+            font-size: 75%;
+        }
+
+        .info-tooltip-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .info-tooltip-container .info-tooltip-text {
+            visibility: hidden;
+            width: 250px;
+            background-color: #5f6368;
+            color: #fff;
+            text-align: left;
+            border-radius: 6px;
+            padding: 8px;
+            position: absolute;
+            z-index: 10;
+            bottom: 135%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.8em;
+            line-height: 1.4;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            pointer-events: none;
+        }
+        .info-tooltip-text i {
+            display: inline-block;
+            width: 1.1em;
+            text-align: center;
+            margin-right: 4px;
+        }
+        .info-tooltip-container .info-tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #5f6368 transparent transparent transparent;
+        }
+        .info-tooltip-container:hover .info-tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        #mute-button, #info-button {
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 26px;
+            height: 26px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            padding: 0;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+        #mute-button:hover, #info-button:hover {
+            background-color: #185abc;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .sample-selector {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+            gap: 10px;
+            padding: 0 10px 15px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .sample-buttons {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            flex-shrink: 0;
+            width: calc(8 * var(--img-size) + 7 * var(--btn-gap));
+            max-width: 100%;
+        }
+
+        .sample-type-button {
+            height: auto;
+            flex: 1;
+            box-sizing: border-box; 
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 10px;
+
+            border: 3px solid #1a73e8;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            font-size: 0.9em;
+            background-color: #1a73e8;
+            color: #fff;
+            font-weight: 500;
+            text-align: center;
+            white-space: nowrap;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+        .sample-type-button:hover {
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .sample-type-button.selected {
+            background-color: #fff;
+            color: #1a73e8;
+        }
+        .sample-type-button:not(.selected):hover {
+            background-color: #185abc;
+        }
+        .sample-type-button.selected:hover {
+            background-color: #e8f0fe;
+        }
+
+        .samples-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--btn-gap);
+            justify-content: center;
+        }
+
+        .sample-img {
+            height: var(--img-size);
+            width: var(--img-size);
+
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: 3px solid transparent;
+            object-fit: cover;
+            box-sizing: border-box;
+        }
+        .sample-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .sample-img.selected {
+            border-color: #1a73e8;
+        }
+
+        .fig-container {
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 30px;
+            border: 1px solid #e8eaed;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+        .capabilities-images {
+            display: flex;
+            gap: 10px;
+        }
+        .capabilities-images img {
+            flex: 1;
+            min-width: 0;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+        }
+
+        .collapsible:hover:not(.active) {
+            padding-bottom: 33px;
+        }
+        .collapsible h2 {
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+            padding-right: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0;
+        }
+        .collapsible.active h2 {
+            margin-bottom: 1em;
+        }
+        .collapsible h2::after {
+            content: '›';
+            font-size: 2em;
+            font-weight: 500;
+            position: absolute;
+            right: 0;
+            top: 52%;
+            transform: translateY(-50%) rotate(0deg);
+            line-height: 1;
+            transition: transform 0.2s ease-out;
+            color: #5f6368;
+        }
+        .collapsible.active h2::after {
+            transform: translateY(-50%) rotate(90deg);
+        }
+        .collapsible .collapsible-content {
+            display: none;
+        }
+        .collapsible.active .collapsible-content {
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                margin: 20px auto;
+                padding: 0 15px;
+            }
+            h1 { font-size: 1.5em; }
+            h2 { font-size: 1.4em; }
+
+            .authors { font-size: 0.75em; }
+            .authors span { margin: 0 3px; }
+            .affiliations { font-size: 0.7em; }
+            .links a { padding: 8px 15px; margin: 5px; }
+            .abstract, .citation, .visualization-container, .method, .capabilities, .acknowledgements {
+                padding: 20px;
+                border-radius: 20px;
+            }
+            .video-container { border-radius: 20px; }
+            .video-container h2, .abstract h2, .citation h2, .visualization-container h2, .method h2, .capabilities h2, .acknowledgements h2 {
+                font-size: 1.3em;
+            }
+            .chapters button {
+                flex-basis: 80px;
+                padding: 5px 6px;
+                font-size: 0.75em;
+            }
+            .visualization {
+                height: 300px;
+                border-radius: 20px;
+            }
+            #canvas { border-radius: 20px; }
+            .abstract p, .method p, .capabilities p, .acknowledgements p {
+                font-size: 0.85em;
+            }
+            .citation pre {
+                padding: 15px;
+                border-radius: 20px;
+                font-size: 0.8em;
+            }
+            #video-frame { border-radius: 20px !important; }
+
+            .fig-container {
+                padding: 10px;
+                border-radius: 20px;
+            }
+            .capabilities-images {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .method .capabilities-images img {
+                width: 100%;
+                height: auto;
+                align-self: center;
+            }
+            .method .capabilities-images img[src*="D4RT_method_right.png"] {
+                width: calc(100% * 1013 / 1854);
+            }
+
+            .sample-selector {
+                gap: 6px;
+                padding: 0 0 15px;
+            }
+
+            .sample-buttons {
+                gap: var(--btn-gap-mobile);
+                width: 100%;
+            }
+
+            .sample-type-button {
+                height: var(--btn-height-mobile);
+                font-size: 0.8em;
+                padding: 0 8px;
+            }
+
+            .samples-row {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: var(--btn-gap-mobile);
+                justify-content: normal;
+            }
+
+            .sample-img {
+                height: var(--img-size-mobile);
+                width: 100%;
+                aspect-ratio: 1 / 1;
+                border-width: 2px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Efficiently Reconstructing Dynamic Scenes one <span style="white-space: nowrap;">🎯 D4RT</span> at a Time</h1>
+
+    <div class="authors">
+        <span>Chuhan Zhang<sup>✦</sup></span>
+        <span>Guillaume Le Moing<sup>✦</sup></span>
+        <span>Skanda Koppula<sup>✦<span style="font-size:120%; margin-left: 1.5px;">◇</span></sup></span>
+        <span>Ignacio Rocco<sup>✦</sup></span>
+        <br>
+        <span>Liliane Momeni<sup>✦</sup></span>
+        <span>Junyu Xie<sup><span style="font-size:85%; margin-top: -2px; margin-left: -1px; margin-right: -1px;">○</span>&nbsp;1</sup></span>
+        <span>Shuyang Sun<sup>✦</sup></span>
+        <span>Rahul Sukthankar<sup>✦</sup></span>
+        <span>Joëlle K. Barral<sup>✦</sup></span>
+        <br>
+        <span>Raia Hadsell<sup>✦</sup></span>
+        <span>Zoubin Ghahramani<sup>✦</sup></span>
+        <span>Andrew Zisserman<sup>✦&nbsp;<span style="font-size:85%; margin-top: -2px; margin-left: -1px;">○</span></sup></span>
+        <span>Junlin Zhang<sup>✦</sup></span>
+        <span>Mehdi S. M. Sajjadi<sup>✦&nbsp;2</sup></span>
+    </div>
+    <div class="affiliations">
+        <sup>✦</sup>Google DeepMind &nbsp;&nbsp; <sup><span style="font-size:120%">◇</span></sup>University College London &nbsp;&nbsp; <sup><span style="font-size:85%; margin-top: -2px; margin-left: -1px;">○</span></sup>University of Oxford
+        <br>
+        <sup>1</sup>Work done during an internship at Google DeepMind &nbsp;&nbsp; <sup>2</sup>Correspondence: <a href="mailto:d4rt@msajjadi.com">d4rt@msajjadi.com</a>
+    </div>
+
+    <div class="links">
+        <a href="https://storage.googleapis.com/d4rt_assets/D4RT_paper.pdf" target="_blank">PDF</a>
+        <a href="https://arxiv.org/" target="_blank">arXiv (coming soon)</a>
+    </div>
+
+    <div class="video-container">
+        <div style="display:flex; align-items:center; padding: 30px 30px 0; margin-bottom: 10px; gap: 10px;">
+            <h2 style="padding:0; margin:0; margin-top:0; text-align: left; font-size: 1.5em;">Overview</h2>
+            <button id="mute-button"><i class="fa-solid fa-volume-xmark"></i></button>
+        </div>
+        <div id="player-wrapper" style="aspect-ratio: 16/9; margin-bottom: 10px; width: calc(100% - 20px); display: block; margin-left: 10px; margin-right: 10px; overflow: hidden;">
+            <div id="youtube-player" style="width: 1920px; height: 1080px; transform-origin: 0 0;"></div>
+        </div>
+        <div class="chapters">
+            <button data-time="0">Intro</button>
+            <button data-time="11">D4RT Framework</button>
+            <button data-time="66">All Pixels Tracking</button>
+            <button data-time="94">Point Cloud Reconstruction</button>
+            <button data-time="122">Long-Term Prediction</button>
+            <button data-time="145">Quantitative Performance</button>
+            <button data-time="173">Qualitative Comparisons</button>
+            <button data-time="197">Takeaways</button>
+        </div>
+    </div>
+
+    <div class="abstract">
+        <h2>Abstract</h2>
+        <p>Understanding and reconstructing the complex geometry and motion of dynamic scenes from video remains a formidable challenge in computer vision. This paper introduces D4RT, a simple yet powerful feedforward model designed to efficiently solve this task. D4RT utilizes a unified transformer architecture to jointly infer depth, spatio-temporal correspondence, and full camera parameters from a single video. Its core innovation is a novel querying mechanism that sidesteps the heavy computation of dense, per-frame decoding and the complexity of managing multiple, task-specific decoders. Our decoding interface allows the model to independently and flexibly probe the 3D position of any point in space and time. The result is a lightweight and highly scalable method that enables remarkably efficient training and inference. We demonstrate that our approach sets a new state of the art, outperforming previous methods across a wide spectrum of 4D reconstruction tasks.</p>
+    </div>
+
+    <div class="method">
+        <h2>Method</h2>
+        <div class="fig-container capabilities-images">
+            <img src="https://storage.googleapis.com/d4rt_assets/D4RT_method_left.png" alt="D4RT method left" style="flex-grow: 1854;">
+            <img src="https://storage.googleapis.com/d4rt_assets/D4RT_method_right.png" alt="D4RT method right" style="flex-grow: 1013;">
+        </div>
+        <p>A global self-attention encoder first transforms the input video into the latent <em>Global Scene Representation</em>, which is passed to a lightweight decoder. The decoder can be independently queried for the <em>3D position</em> P of any given 2D point (<em>u</em>, <em>v</em>) from the source timestep <em>t</em><sub>src</sub> at target timestep <em>t</em><sub>tgt</sub> in camera coordinate <em>t</em><sub>cam</sub>, unlocking full decoding at any point in space and time. The query also contains an embedding of the local frame patch centered around (<em>u</em>, <em>v</em>), providing additional spatial context.</p>
+    </div>
+
+    <div class="capabilities collapsible">
+        <h2>Capabilities</h2>
+        <div class="collapsible-content">
+            <div class="capabilities-images fig-container">
+                <img src="https://storage.googleapis.com/d4rt_assets/D4RT_capabilities_left.gif" alt="D4RT capabilities left">
+                <img src="https://storage.googleapis.com/d4rt_assets/D4RT_capabilities_right.gif" alt="D4RT capabilities right">
+            </div>
+            <div style="padding-top: 10px">
+                <p><b>3D Tracking:</b> predicts sparse 3D tracks for a few pixels in selected frames in local camera coordinates.</p>
+                <p><b>3D Reconstruction:</b> projects depth values using camera pose: no correspondences, dynamic objects are deduplicated.</p>
+                <p><b>All pixels tracking:</b> produces a holistic scene reconstruction by predicting the 3D tracks of all pixels in the video in world coordinates.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="visualization-container">
+        <div style="display:flex; align-items:center; gap: 10px; margin-bottom:1em">
+            <h2 style="margin-bottom:0">Interactive 4D Reconstruction</h2>
+            <div class="info-tooltip-container">
+                <button id="info-button"><i class="fa-solid fa-info"></i></button>
+                <span class="info-tooltip-text"><i class="fa-solid fa-hand-pointer"></i>Click and drag to rotate the scene.<br><br><i class="fa-regular fa-file"></i>For reduced file size and faster loading, up to 90% of points have been removed from each scene.</span>
+            </div>
+        </div>
+        <div class="visualization">
+            <div id="message">Loading example...</div>
+            <canvas id="canvas"></canvas>
+            <img id="video-frame" style="position: absolute; top: 20px; left: 20px; width: auto; height: auto; z-index: 1000; border: none; display: none; border-radius: 30px; box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5); pointer-events: none;" />
+            <div id="timeline">
+              <button id="play-pause" class="icon-button"><span>&#9208;</span></button>
+              <input type="range" id="frame-slider" min="0" max="100" value="0">
+            </div>
+        </div>
+        <div class="sample-selector">
+            <div class="sample-buttons">
+                <button id="track-button" class="sample-type-button selected">All Pixels Tracking</button>
+                <button id="pc-button" class="sample-type-button">Point Cloud</button>
+            </div>
+            <div class="samples-row" id="samples-row"></div>
+        </div>
+    </div>
+
+    <div class="citation">
+        <h2>Citation</h2>
+        <pre><code>@article{zhang2025d4rt,
+  title={Efficiently Reconstructing Dynamic Scenes One D4RT at a Time},
+  author={Zhang, Chuhan and Le Moing, Guillaume and Koppula, Skanda and Rocco, Ignacio and Momeni, Liliane and Xie, Junyu and Sun, Shuyang and Sukthankar, Rahul and Barral, Jo{\"e}lle K and Hadsell, Raia and Ghahramani, Zoubin and Zisserman, Andrew and Zhang, Junlin and Sajjadi, Mehdi SM},
+  journal={arXiv preprint},
+  year={2025}
+}</code></pre>
+    </div>
+
+    <div class="acknowledgements collapsible">
+        <h2>Acknowledgements</h2>
+        <div class="collapsible-content">
+            <p>MS led the project, with management support from JZ. MS proposed the SRT-style decoder, and GL proposed local RGB patches and tracking-all-pixels. CZ, GL, IR, and MS contributed to the core model design. LM, SS, IR, and SK designed and created training datasets. CZ, GL, and MS carried out the major implementation, with significant contributions from SK, IR, LM, and JX. CZ drove the model experimentation. Comprehensive evaluations and data pipelines were set up by CZ, GL, SK, IR, LM, JX, SS, and MS. Visualizations were produced by GL, IR and JX. RS, JB, RH, ZG, and AZ provided project support, advising, and guidance.</p>
+            <p>We thank a number of colleagues and advisors for making this work possible. We thank Saurabh Saxena, Kaiming He, Carl Doersch, Leonidas Guibas, Noah Snavely, Ben Poole, Joao Carreira, Pauline Luc, Yi Yang, Howard Huang, Huizhong Chen, Cordelia Schmid for providing advice during the project; Gabriel Brostow, for advising SK during the course of the project and for providing feedback on the manuscript; Relja Aranđelović and Maks Ovsjanikov for providing feedback on the manuscript; Tengda Han and Dilara Gokay for their help during early-stage development; Aravindh Mahendran for helping with code reviews; Daniel Duckworth for helping with visualizations and comparisons against baselines; and Alberto García and Jesús Pérez for the invaluable contributions to data generation and collection.</p>
+            <p>Finally, we thank the authors of the <a href="https://github.com/antimatter15/splat" target="_blank">splat viewer</a> for their WebGL renderer that we adapted for our 4D reconstruction visualizations.</p>
+        </div>
+    </div>
+
+    <script>
+let viewMatrix = [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1];
+let viewMatrixAtLoad = [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1];
+let sceneCenter = null;
+let radius = 5.0;
+let azimuth = 0.0;
+let elevation = 0.0;
+const worldUp = [0,1,0];
+let splatData = new Uint8Array(0);
+let worker = null;
+let currentFrame = 0;
+let numFrames = 0;
+let playing = true;
+let lastFrameTimeStamp = 0;
+let scene_fps = 10;
+let splatFrames = [];
+let vertexCount = 0;
+let onFrameDrawn = null;
+let track_data = null;
+let camera_data = null;
+let videoFrameURLs = [];
+const splatScale = 0.6;
+const samplesWithoutTilt = ['bread', 'grassland', 'pamukkale', 'temple', 'coast'];
+const samplesBackward = ['bridge', 'desert', 'townhouses', 'hotel', 'plane', 'terrace'];
+let currentSampleName = '';
+const pointCloudSamples = ['mars', 'colosseum', 'bridge', 'pamukkale', 'desert', 'townhouses', 'coast', 'shoji', 'hotel', 'plane', 'grassland', 'terrace', 'food', 'figs', 'trout', 'temple'];
+const accumulation_step_point_clouds = 1;
+
+const vec3 = {
+    sub: (a,b) => [a[0]-b[0], a[1]-b[1], a[2]-b[2]],
+    norm: (a) => Math.sqrt(a[0]*a[0]+a[1]*a[1]+a[2]*a[2]),
+    cross: (a,b) => [a[1]*b[2]-a[2]*b[1], a[2]*b[0]-a[0]*b[2], a[0]*b[1]-a[1]*b[0]],
+    normalize: (a) => {
+        const l = Math.sqrt(a[0]*a[0]+a[1]*a[1]+a[2]*a[2]);
+        return l > 1e-6 ? [a[0]/l, a[1]/l, a[2]/l] : [0,0,0];
+    },
+    dot: (a,b) => a[0]*b[0]+a[1]*b[1]+a[2]*b[2],
+};
+
+function getMeanDepth(points, viewMat) {
+    let sum_depth = 0;
+    let count = 0;
+    for (let i = 0; i < points.length; i++) {
+        const p = points[i].traj[0];
+        if (!isNaN(p[0])) {
+            const depth = viewMat[2]*p[0] + viewMat[6]*p[1] + viewMat[10]*p[2] + viewMat[14];
+            if (depth > 0) {
+              sum_depth += depth;
+              count++;
+            }
+        }
+    }
+    return count > 0 ? sum_depth / count : 5.0;
+}
+
+function hsvToRgb(h, s, v) {
+    let r, g, b, i, f, p, q, t;
+    if (arguments.length === 1) {
+        s = h.s, v = h.v, h = h.h;
+    }
+    i = Math.floor(h * 6);
+    f = h * 6 - i;
+    p = v * (1 - s);
+    q = v * (1 - f * s);
+    t = v * (1 - (1 - f) * s);
+    switch (i % 6) {
+        case 0: r = v, g = t, b = p; break;
+        case 1: r = q, g = v, b = p; break;
+        case 2: r = p, g = v, b = t; break;
+        case 3: r = p, g = q, b = v; break;
+        case 4: r = t, g = p, b = v; break;
+        case 5: r = v, g = p, b = q; break;
+    }
+    return [
+        Math.round(r * 255),
+        Math.round(g * 255),
+        Math.round(b * 255)
+    ];
+}
+
+function getColorsFromCoords(heights, widths, repetition) {
+    const num_points = heights.length;
+    if (num_points === 0) {
+        return [];
+    }
+
+    let min_h = Infinity, max_h = -Infinity, min_w = Infinity, max_w = -Infinity;
+    for(let i=0; i<num_points; ++i) {
+        min_h = Math.min(min_h, heights[i]);
+        max_h = Math.max(max_h, heights[i]);
+        min_w = Math.min(min_w, widths[i]);
+        max_w = Math.max(max_w, widths[i]);
+    }
+    const spread_h = max_h - min_h;
+    const spread_w = max_w - min_w;
+
+    const colors = [];
+    for (let i = 0; i < num_points; i++) {
+        const norm_h = spread_h > 1e-6 ? (heights[i] - min_h) / spread_h : 0;
+        const norm_w = spread_w > 1e-6 ? (widths[i] - min_w) / spread_w : 0;
+
+        const t_h_rep = norm_h * repetition;
+        let t_h_final = t_h_rep - Math.floor(t_h_rep);
+        if (Math.floor(t_h_rep) % 2 == 1) {
+            t_h_final = 1.0 - t_h_final;
+        }
+
+        const t_w_rep = norm_w * repetition;
+        let t_w_final = t_w_rep - Math.floor(t_w_rep);
+        if (Math.floor(t_w_rep) % 2 == 1) {
+            t_w_final = 1.0 - t_w_final;
+        }
+
+        const t = (t_h_final + t_w_final) / 2.0;
+        colors.push(hsvToRgb(t, 1, 1));
+    }
+    return colors;
+}
+
+function generateTracksForFrame(frame_idx, dynamicPoints, trackColors, p) {
+    const numGaussians = 5;
+    const trackLengthMultiplier = 1.0;
+    let splats = [];
+    for (let track_idx=0; track_idx<dynamicPoints.length; ++track_idx) {
+        const color = trackColors[track_idx];
+        const start_i = Math.max(0, frame_idx - p.track_history_length);
+        const num_history_segments = frame_idx - start_i;
+        for (let i = start_i; i < frame_idx; i++) {
+            const p1 = dynamicPoints[track_idx].traj[i];
+            const p2 = dynamicPoints[track_idx].traj[i+1];
+
+            if (p1.some(isNaN) || p2.some(isNaN)) continue;
+
+            const vec = [p2[0] - p1[0], p2[1] - p1[1], p2[2] - p1[2]];
+            const length = Math.sqrt(
+                vec[0] * vec[0] + vec[1] * vec[1] + vec[2] * vec[2],
+            );
+            if (length < 1e-6) continue;
+
+            const dir = [vec[0] / length, vec[1] / length, vec[2] / length];
+
+            const seg_idx_from_oldest = i - start_i;
+            const opacity_factor =
+                num_history_segments > 0
+                    ? (seg_idx_from_oldest + 1) / num_history_segments
+                    : 1.0;
+
+            for (let j = 0; j < numGaussians; j++) {
+                const center = [
+                    p1[0] + (dir[0] * length * (j + 0.5)) / numGaussians,
+                    p1[1] + (dir[1] * length * (j + 0.5)) / numGaussians,
+                    p1[2] + (dir[2] * length * (j + 0.5)) / numGaussians,
+                ];
+
+                const scale = [
+                    (length / numGaussians) * trackLengthMultiplier,
+                    p.track_thickness,
+                    p.track_thickness,
+                ];
+
+                let q = [1, 0, 0, 0];
+                const dot = dir[0];
+                if (Math.abs(dot) < 0.9999) {
+                    const cross = [0, -dir[2], dir[1]];
+                    const cross_norm = Math.sqrt(
+                        cross[0] * cross[0] +
+                            cross[1] * cross[1] +
+                            cross[2] * cross[2],
+                    );
+                    const axis = [
+                        cross[0] / cross_norm,
+                        cross[1] / cross_norm,
+                        cross[2] / cross_norm,
+                    ];
+                    const angle = Math.acos(dot);
+                    const s = Math.sin(angle / 2);
+                    q = [Math.cos(angle / 2), axis[0] * s, axis[1] * s, axis[2] * s];
+                } else if (dot < 0) {
+                    q = [0, 0, 1, 0];
+                }
+
+                splats.push({
+                    center,
+                    scale,
+                    rot: q,
+                    color,
+                    opacity: p.track_opacity * opacity_factor,
+                });
+            }
+        }
+    }
+
+    const rowLength = 40;
+    const buffer = new ArrayBuffer(splats.length * rowLength);
+    const f_buffer = new Float32Array(buffer);
+    const u_buffer = new Uint8Array(buffer);
+
+    for (let i = 0; i < splats.length; i++) {
+        const s = splats[i];
+
+        f_buffer[i * 10 + 0] = s.center[0];
+        f_buffer[i * 10 + 1] = s.center[1];
+        f_buffer[i * 10 + 2] = s.center[2];
+
+        f_buffer[i * 10 + 3] = s.scale[0];
+        f_buffer[i * 10 + 4] = s.scale[1];
+        f_buffer[i * 10 + 5] = s.scale[2];
+
+        const rgba_offset = i * rowLength + 24;
+        u_buffer[rgba_offset + 0] = s.color[0];
+        u_buffer[rgba_offset + 1] = s.color[1];
+        u_buffer[rgba_offset + 2] = s.color[2];
+        u_buffer[rgba_offset + 3] = s.opacity * 255;
+
+        const rot_offset = i * rowLength + 28;
+        const norm_sq =
+            s.rot[0] * s.rot[0] +
+            s.rot[1] * s.rot[1] +
+            s.rot[2] * s.rot[2] +
+            s.rot[3] * s.rot[3];
+        const norm = norm_sq > 0 ? Math.sqrt(norm_sq) : 1;
+        u_buffer[rot_offset + 0] = ((s.rot[0] / norm) * 128 + 128);
+        u_buffer[rot_offset + 1] = ((s.rot[1] / norm) * 128 + 128);
+        u_buffer[rot_offset + 2] = ((s.rot[2] / norm) * 128 + 128);
+        u_buffer[rot_offset + 3] = ((s.rot[3] / norm) * 128 + 128);
+
+        u_buffer[i * rowLength + 34] = 4; // is_track bit
+    }
+
+    return new Uint8Array(buffer);
+}
+
+function getProjectionMatrix(fx, fy, width, height) {
+    const znear = 0.2;
+    const zfar = 200;
+    return [
+        [(2 * fx) / width, 0, 0, 0],
+        [0, -(2 * fy) / height, 0, 0],
+        [0.3, 0, zfar / (zfar - znear), 1],
+        [0, 0, -(zfar * znear) / (zfar - znear), 0],
+    ].flat();
+}
+
+function multiply4(a, b) {
+    return [
+        b[0] * a[0] + b[1] * a[4] + b[2] * a[8] + b[3] * a[12],
+        b[0] * a[1] + b[1] * a[5] + b[2] * a[9] + b[3] * a[13],
+        b[0] * a[2] + b[1] * a[6] + b[2] * a[10] + b[3] * a[14],
+        b[0] * a[3] + b[1] * a[7] + b[2] * a[11] + b[3] * a[15],
+        b[4] * a[0] + b[5] * a[4] + b[6] * a[8] + b[7] * a[12],
+        b[4] * a[1] + b[5] * a[5] + b[6] * a[9] + b[7] * a[13],
+        b[4] * a[2] + b[5] * a[6] + b[6] * a[10] + b[7] * a[14],
+        b[4] * a[3] + b[5] * a[7] + b[6] * a[11] + b[7] * a[15],
+        b[8] * a[0] + b[9] * a[4] + b[10] * a[8] + b[11] * a[12],
+        b[8] * a[1] + b[9] * a[5] + b[10] * a[9] + b[11] * a[13],
+        b[8] * a[2] + b[9] * a[6] + b[10] * a[10] + b[11] * a[14],
+        b[8] * a[3] + b[9] * a[7] + b[10] * a[11] + b[11] * a[15],
+        b[12] * a[0] + b[13] * a[4] + b[14] * a[8] + b[15] * a[12],
+        b[12] * a[1] + b[13] * a[5] + b[14] * a[9] + b[15] * a[13],
+        b[12] * a[2] + b[13] * a[6] + b[14] * a[10] + b[15] * a[14],
+        b[12] * a[3] + b[13] * a[7] + b[14] * a[11] + b[15] * a[15],
+    ];
+}
+
+function invert4(a) {
+    let b00 = a[0] * a[5] - a[1] * a[4];
+    let b01 = a[0] * a[6] - a[2] * a[4];
+    let b02 = a[0] * a[7] - a[3] * a[4];
+    let b03 = a[1] * a[6] - a[2] * a[5];
+    let b04 = a[1] * a[7] - a[3] * a[5];
+    let b05 = a[2] * a[7] - a[3] * a[6];
+    let b06 = a[8] * a[13] - a[9] * a[12];
+    let b07 = a[8] * a[14] - a[10] * a[12];
+    let b08 = a[8] * a[15] - a[11] * a[12];
+    let b09 = a[9] * a[14] - a[10] * a[13];
+    let b10 = a[9] * a[15] - a[11] * a[13];
+    let b11 = a[10] * a[15] - a[11] * a[14];
+    let det =
+        b00 * b11 - b01 * b10 + b02 * b09 + b03 * b08 - b04 * b07 + b05 * b06;
+    if (!det) return null;
+    return [
+        (a[5] * b11 - a[6] * b10 + a[7] * b09) / det,
+        (a[2] * b10 - a[1] * b11 - a[3] * b09) / det,
+        (a[13] * b05 - a[14] * b04 + a[15] * b03) / det,
+        (a[10] * b04 - a[9] * b05 - a[11] * b03) / det,
+        (a[6] * b08 - a[4] * b11 - a[7] * b07) / det,
+        (a[0] * b11 - a[2] * b08 + a[3] * b07) / det,
+        (a[14] * b02 - a[12] * b05 - a[15] * b01) / det,
+        (a[8] * b05 - a[10] * b02 + a[11] * b01) / det,
+        (a[4] * b10 - a[5] * b08 + a[7] * b06) / det,
+        (a[1] * b08 - a[0] * b10 - a[3] * b06) / det,
+        (a[12] * b04 - a[13] * b02 + a[15] * b00) / det,
+        (a[9] * b02 - a[8] * b04 - a[11] * b00) / det,
+        (a[5] * b07 - a[4] * b09 - a[6] * b06) / det,
+        (a[0] * b09 - a[1] * b07 + a[2] * b06) / det,
+        (a[13] * b01 - a[12] * b03 - a[14] * b00) / det,
+        (a[8] * b03 - a[9] * b01 + a[10] * b00) / det,
+    ];
+}
+
+function rotate4(a, rad, x, y, z) {
+    let len = Math.hypot(x, y, z);
+    x /= len;
+    y /= len;
+    z /= len;
+    let s = Math.sin(rad);
+    let c = Math.cos(rad);
+    let t = 1 - c;
+    let b00 = x * x * t + c;
+    let b01 = y * x * t + z * s;
+    let b02 = z * x * t - y * s;
+    let b10 = x * y * t - z * s;
+    let b11 = y * y * t + c;
+    let b12 = z * y * t + x * s;
+    let b20 = x * z * t + y * s;
+    let b21 = y * z * t - x * s;
+    let b22 = z * z * t + c;
+    return [
+        a[0] * b00 + a[4] * b01 + a[8] * b02,
+        a[1] * b00 + a[5] * b01 + a[9] * b02,
+        a[2] * b00 + a[6] * b01 + a[10] * b02,
+        a[3] * b00 + a[7] * b01 + a[11] * b02,
+        a[0] * b10 + a[4] * b11 + a[8] * b12,
+        a[1] * b10 + a[5] * b11 + a[9] * b12,
+        a[2] * b10 + a[6] * b11 + a[10] * b12,
+        a[3] * b10 + a[7] * b11 + a[11] * b12,
+        a[0] * b20 + a[4] * b21 + a[8] * b22,
+        a[1] * b20 + a[5] * b21 + a[9] * b22,
+        a[2] * b20 + a[6] * b21 + a[10] * b22,
+        a[3] * b20 + a[7] * b21 + a[11] * b22,
+        ...a.slice(12, 16),
+    ];
+}
+
+function translate4(a, x, y, z) {
+    return [
+        ...a.slice(0, 12),
+        a[0] * x + a[4] * y + a[8] * z + a[12],
+        a[1] * x + a[5] * y + a[9] * z + a[13],
+        a[2] * x + a[6] * y + a[10] * z + a[14],
+        a[3] * x + a[7] * y + a[11] * z + a[15],
+    ];
+}
+
+function createWorker(self) {
+    let buffer;
+    let vertexCount = 0;
+    let viewProj;
+    let rowLength = 10 * 4;
+    let floats_per_splat = 10;
+    let lastProj = [];
+    let depthIndex = new Uint32Array();
+    let lastVertexCount = 0;
+
+    var _floatView = new Float32Array(1);
+    var _int32View = new Int32Array(_floatView.buffer);
+
+    function floatToHalf(float) {
+        _floatView[0] = float;
+        var f = _int32View[0];
+
+        var sign = (f >> 31) & 0x0001;
+        var exp = (f >> 23) & 0x00ff;
+        var frac = f & 0x007fffff;
+
+        var newExp;
+        if (exp == 0) {
+            newExp = 0;
+        } else if (exp < 113) {
+            newExp = 0;
+            frac |= 0x00800000;
+            frac = frac >> (113 - exp);
+            if (frac & 0x01000000) {
+                newExp = 1;
+                frac = 0;
+            }
+        } else if (exp < 142) {
+            newExp = exp - 112;
+        } else {
+            newExp = 31;
+            frac = 0;
+        }
+
+        return (sign << 15) | (newExp << 10) | (frac >> 13);
+    }
+
+    function packHalf2x16(x, y) {
+        return (floatToHalf(x) | (floatToHalf(y) << 16)) >>> 0;
+    }
+
+    function generateTexture() {
+        if (!buffer) return;
+        const f_buffer = new Float32Array(buffer);
+        const u_buffer = new Uint8Array(buffer);
+
+        var texwidth = 1024 * 2;
+        var texheight = Math.ceil((2 * vertexCount) / texwidth);
+        var texdata = new Uint32Array(texwidth * texheight * 4);
+        var texdata_c = new Uint8Array(texdata.buffer);
+        var texdata_f = new Float32Array(texdata.buffer);
+
+        for (let i = 0; i < vertexCount; i++) {
+            texdata_f[8 * i + 0] = f_buffer[floats_per_splat * i + 0];
+            texdata_f[8 * i + 1] = f_buffer[floats_per_splat * i + 1];
+            texdata_f[8 * i + 2] = f_buffer[floats_per_splat * i + 2];
+            const visibility = u_buffer[rowLength * i + 34];
+            texdata[8 * i + 3] = visibility << 16;
+
+            texdata_c[4 * (8 * i + 7) + 0] = u_buffer[rowLength * i + 24 + 0];
+            texdata_c[4 * (8 * i + 7) + 1] = u_buffer[rowLength * i + 24 + 1];
+            texdata_c[4 * (8 * i + 7) + 2] = u_buffer[rowLength * i + 24 + 2];
+            texdata_c[4 * (8 * i + 7) + 3] = u_buffer[rowLength * i + 24 + 3];
+
+            let scale = [
+                f_buffer[floats_per_splat * i + 3 + 0],
+                f_buffer[floats_per_splat * i + 3 + 1],
+                f_buffer[floats_per_splat * i + 3 + 2],
+            ];
+            let rot = [
+                (u_buffer[rowLength * i + 28 + 0] - 128) / 128,
+                (u_buffer[rowLength * i + 28 + 1] - 128) / 128,
+                (u_buffer[rowLength * i + 28 + 2] - 128) / 128,
+                (u_buffer[rowLength * i + 28 + 3] - 128) / 128,
+            ];
+
+            const M = [
+                1.0 - 2.0 * (rot[2] * rot[2] + rot[3] * rot[3]),
+                2.0 * (rot[1] * rot[2] + rot[0] * rot[3]),
+                2.0 * (rot[1] * rot[3] - rot[0] * rot[2]),
+                2.0 * (rot[1] * rot[2] - rot[0] * rot[3]),
+                1.0 - 2.0 * (rot[1] * rot[1] + rot[3] * rot[3]),
+                2.0 * (rot[2] * rot[3] + rot[0] * rot[1]),
+                2.0 * (rot[1] * rot[3] + rot[0] * rot[2]),
+                2.0 * (rot[2] * rot[3] - rot[0] * rot[1]),
+                1.0 - 2.0 * (rot[1] * rot[1] + rot[2] * rot[2]),
+            ].map((k, i) => k * scale[Math.floor(i / 3)]);
+
+            const sigma = [
+                M[0] * M[0] + M[3] * M[3] + M[6] * M[6],
+                M[0] * M[1] + M[3] * M[4] + M[6] * M[7],
+                M[0] * M[2] + M[3] * M[5] + M[6] * M[8],
+                M[1] * M[1] + M[4] * M[4] + M[7] * M[7],
+                M[1] * M[2] + M[4] * M[5] + M[7] * M[8],
+                M[2] * M[2] + M[5] * M[5] + M[8] * M[8],
+            ];
+
+            texdata[8 * i + 4] = packHalf2x16(4 * sigma[0], 4 * sigma[1]);
+            texdata[8 * i + 5] = packHalf2x16(4 * sigma[2], 4 * sigma[3]);
+            texdata[8 * i + 6] = packHalf2x16(4 * sigma[4], 4 * sigma[5]);
+        }
+
+        self.postMessage({ texdata, texwidth, texheight }, [texdata.buffer]);
+    }
+
+    function runSort(viewProj) {
+        if (!buffer) return;
+        const f_buffer = new Float32Array(buffer);
+        if (lastVertexCount == vertexCount) {
+            let dot =
+                lastProj[2] * viewProj[2] +
+                lastProj[6] * viewProj[6] +
+                lastProj[10] * viewProj[10];
+            if (Math.abs(dot - 1) < 0.01) {
+                return;
+            }
+        } else {
+            generateTexture();
+            lastVertexCount = vertexCount;
+        }
+
+        console.time("sort");
+        let maxDepth = -Infinity;
+        let minDepth = Infinity;
+        let sizeList = new Int32Array(vertexCount);
+        for (let i = 0; i < vertexCount; i++) {
+            let depth =
+                ((viewProj[2] * f_buffer[floats_per_splat * i + 0] +
+                    viewProj[6] * f_buffer[floats_per_splat * i + 1] +
+                    viewProj[10] * f_buffer[floats_per_splat * i + 2]) *
+                    4096) |
+                0;
+            sizeList[i] = depth;
+            if (depth > maxDepth) maxDepth = depth;
+            if (depth < minDepth) minDepth = depth;
+        }
+
+        let depthInv = (256 * 256 - 1) / (maxDepth - minDepth);
+        let counts0 = new Uint32Array(256 * 256);
+        for (let i = 0; i < vertexCount; i++) {
+            sizeList[i] = ((sizeList[i] - minDepth) * depthInv) | 0;
+            counts0[sizeList[i]]++;
+        }
+        let starts0 = new Uint32Array(256 * 256);
+        for (let i = 1; i < 256 * 256; i++)
+            starts0[i] = starts0[i - 1] + counts0[i - 1];
+        depthIndex = new Uint32Array(vertexCount);
+        for (let i = 0; i < vertexCount; i++)
+            depthIndex[starts0[sizeList[i]]++] = i;
+
+        console.timeEnd("sort");
+
+        lastProj = viewProj;
+        self.postMessage({ depthIndex, viewProj, vertexCount }, [
+            depthIndex.buffer,
+        ]);
+    }
+
+    const throttledSort = () => {
+        if (!sortRunning) {
+            sortRunning = true;
+            let lastView = viewProj;
+            runSort(lastView);
+            setTimeout(() => {
+                sortRunning = false;
+                if (lastView !== viewProj) {
+                    throttledSort();
+                }
+            }, 10);
+        }
+    };
+
+    let sortRunning;
+    self.onmessage = (e) => {
+        if (e.data.buffer) {
+            buffer = e.data.buffer;
+            vertexCount = e.data.vertexCount;
+            generateTexture();
+            lastProj = [];
+            if (viewProj) {
+                throttledSort();
+            }
+        } else if (e.data.vertexCount) {
+            vertexCount = e.data.vertexCount;
+        } else if (e.data.view) {
+            viewProj = e.data.view;
+            throttledSort();
+        }
+    };
+}
+
+const vertexShaderSource = `
+#version 300 es
+precision highp float;
+precision highp int;
+
+uniform highp usampler2D u_texture;
+uniform mat4 projection, view;
+uniform vec2 focal;
+uniform vec2 viewport;
+
+in vec2 position;
+in int index;
+
+out vec4 vColor;
+out vec2 vPosition;
+
+void main () {
+    uvec4 cen = texelFetch(u_texture, ivec2((uint(index) & 0x3ffu) << 1, uint(index) >> 10), 0);
+    uint dcv = cen.w;
+    uint visibility = (dcv >> 16) & 0xffu;
+    bool is_track = (visibility & 4u) != 0u;
+    vec4 cam = view * vec4(uintBitsToFloat(cen.xyz), 1);
+    vec4 pos2d = projection * cam;
+
+    float clip = 1.2 * pos2d.w;
+    if (pos2d.z < -clip || pos2d.x < -clip || pos2d.x > clip || pos2d.y < -clip || pos2d.y > clip) {
+        gl_Position = vec4(0.0, 0.0, 2.0, 1.0);
+        return;
+    }
+
+    uvec4 cov = texelFetch(u_texture, ivec2(((uint(index) & 0x3ffu) << 1) | 1u, uint(index) >> 10), 0);
+    vec2 u1 = unpackHalf2x16(cov.x), u2 = unpackHalf2x16(cov.y), u3 = unpackHalf2x16(cov.z);
+    mat3 Vrk = mat3(u1.x, u1.y, u2.x, u1.y, u2.y, u3.x, u2.x, u3.x, u3.y);
+    if (!is_track) {
+        Vrk = Vrk * cam.z * cam.z * 0.01;
+    }
+    
+    mat3 J = mat3(
+        focal.x / cam.z, 0., -(focal.x * cam.x) / (cam.z * cam.z),
+        0., -focal.y / cam.z, (focal.y * cam.y) / (cam.z * cam.z),
+        0., 0., 0.
+    );
+
+    mat3 T = transpose(mat3(view)) * J;
+    mat3 cov2d = transpose(T) * Vrk * T;
+
+    float mid = (cov2d[0][0] + cov2d[1][1]) / 2.0;
+    float radius = length(vec2((cov2d[0][0] - cov2d[1][1]) / 2.0, cov2d[0][1]));
+    float lambda1 = mid + radius, lambda2 = mid - radius;
+
+    if(lambda2 < 0.0) return;
+    vec2 diagonalVector = normalize(vec2(cov2d[0][1], lambda1 - cov2d[0][0]));
+    vec2 majorAxis = min(sqrt(2.0 * lambda1), 1024.0) * diagonalVector;
+    vec2 minorAxis = min(sqrt(2.0 * lambda2), 1024.0) * vec2(diagonalVector.y, -diagonalVector.x);
+
+    vColor = vec4((cov.w) & 0xffu, (cov.w >> 8) & 0xffu, (cov.w >> 16) & 0xffu, (cov.w >> 24) & 0xffu) / 255.0;
+    vPosition = position;
+
+    vec2 vCenter = vec2(pos2d) / pos2d.w;
+    gl_Position = vec4(
+        vCenter
+        + position.x * majorAxis / viewport
+        + position.y * minorAxis / viewport, 0.0, 1.0);
+}
+`.trim();
+
+const fragmentShaderSource = `
+#version 300 es
+precision highp float;
+in vec4 vColor;
+in vec2 vPosition;
+out vec4 fragColor;
+void main () {
+    float A = -dot(vPosition, vPosition);
+    if (A < -4.0) discard;
+    float B = exp(A) * vColor.a;
+    fragColor = vec4(B * vColor.rgb, B);
+}
+`.trim();
+
+async function run() {
+    worker = new Worker(
+        URL.createObjectURL(
+            new Blob(["(", createWorker.toString(), ")(self)"], {
+                type: "application/javascript",
+            }),
+        ),
+    );
+
+    const canvas = document.getElementById("canvas");
+    const gl = canvas.getContext("webgl2", { antialias: false });
+
+    const vertexShader = gl.createShader(gl.VERTEX_SHADER);
+    gl.shaderSource(vertexShader, vertexShaderSource);
+    gl.compileShader(vertexShader);
+    if (!gl.getShaderParameter(vertexShader, gl.COMPILE_STATUS)) console.error(gl.getShaderInfoLog(vertexShader));
+
+    const fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+    gl.shaderSource(fragmentShader, fragmentShaderSource);
+    gl.compileShader(fragmentShader);
+    if (!gl.getShaderParameter(fragmentShader, gl.COMPILE_STATUS)) console.error(gl.getShaderInfoLog(fragmentShader));
+
+    const program = gl.createProgram();
+    gl.attachShader(program, vertexShader);
+    gl.attachShader(program, fragmentShader);
+    gl.linkProgram(program);
+    gl.useProgram(program);
+    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) console.error(gl.getProgramInfoLog(program));
+
+    gl.disable(gl.DEPTH_TEST);
+    gl.enable(gl.BLEND);
+    gl.blendFuncSeparate(gl.ONE_MINUS_DST_ALPHA, gl.ONE, gl.ONE_MINUS_DST_ALPHA, gl.ONE);
+    gl.blendEquationSeparate(gl.FUNC_ADD, gl.FUNC_ADD);
+
+    const u_projection = gl.getUniformLocation(program, "projection");
+    const u_viewport = gl.getUniformLocation(program, "viewport");
+    const u_focal = gl.getUniformLocation(program, "focal");
+    const u_view = gl.getUniformLocation(program, "view");
+
+    const triangleVertices = new Float32Array([-2, -2, 2, -2, 2, 2, -2, 2]);
+    const vertexBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, triangleVertices, gl.STATIC_DRAW);
+    const a_position = gl.getAttribLocation(program, "position");
+    gl.enableVertexAttribArray(a_position);
+    gl.vertexAttribPointer(a_position, 2, gl.FLOAT, false, 0, 0);
+
+    var texture = gl.createTexture();
+    gl.bindTexture(gl.TEXTURE_2D, texture);
+    var u_textureLocation = gl.getUniformLocation(program, "u_texture");
+    gl.uniform1i(u_textureLocation, 0);
+
+    const indexBuffer = gl.createBuffer();
+    const a_index = gl.getAttribLocation(program, "index");
+    gl.enableVertexAttribArray(a_index);
+    gl.bindBuffer(gl.ARRAY_BUFFER, indexBuffer);
+    gl.vertexAttribIPointer(a_index, 1, gl.INT, false, 0, 0);
+    gl.vertexAttribDivisor(a_index, 1);
+
+    let projectionMatrix;
+    const resize = () => {
+        gl.canvas.width = gl.canvas.clientWidth;
+        gl.canvas.height = gl.canvas.clientHeight;
+        gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
+
+        gl.uniform2fv(u_focal, new Float32Array([1160.0, 1160.0]));
+        projectionMatrix = getProjectionMatrix(1160.0, 1160.0, gl.canvas.width, gl.canvas.height);
+        gl.uniformMatrix4fv(u_projection, false, projectionMatrix);
+        gl.uniform2fv(u_viewport, new Float32Array([gl.canvas.width, gl.canvas.height]));
+    };
+    window.addEventListener("resize", resize);
+    resize();
+
+    let queuedTexture = null;
+    worker.onmessage = (e) => {
+        if (e.data.texdata) {
+            queuedTexture = e.data;
+        } else if (e.data.depthIndex) {
+            if (queuedTexture) {
+                const { texdata, texwidth, texheight } = queuedTexture;
+                gl.bindTexture(gl.TEXTURE_2D, texture);
+                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);
+                gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+                gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA32UI, texwidth, texheight, 0, gl.RGBA_INTEGER, gl.UNSIGNED_INT, texdata);
+                gl.activeTexture(gl.TEXTURE0);
+                gl.bindTexture(gl.TEXTURE_2D, texture);
+                queuedTexture = null;
+            }
+            const { depthIndex } = e.data;
+            gl.bindBuffer(gl.ARRAY_BUFFER, indexBuffer);
+            gl.bufferData(gl.ARRAY_BUFFER, depthIndex, gl.DYNAMIC_DRAW);
+            vertexCount = e.data.vertexCount;
+            if (onFrameDrawn) {
+                const cb = onFrameDrawn;
+                onFrameDrawn = null;
+                cb();
+            }
+        }
+    };
+
+    const frame = (now) => {
+        if(numFrames > 1 && playing && now - lastFrameTimeStamp > 1000 / scene_fps) {
+            currentFrame = (currentFrame + 1) % numFrames;
+            document.getElementById("frame-slider").value = currentFrame;
+            splatData = splatFrames[currentFrame];
+             worker.postMessage({
+                buffer: splatData.buffer,
+                vertexCount: Math.floor(splatData.length / 40),
+            });
+            lastFrameTimeStamp = now;
+            if (videoFrameURLs && videoFrameURLs.length > 0) {
+                const videoFrame = document.getElementById('video-frame');
+                if(videoFrame) videoFrame.src = videoFrameURLs[currentFrame];
+            }
+        }
+
+        const viewProj = multiply4(projectionMatrix, viewMatrix);
+        worker.postMessage({ view: viewProj });
+
+        if (vertexCount > 0) {
+            gl.useProgram(program);
+            gl.uniformMatrix4fv(u_view, false, viewMatrix);
+            gl.clear(gl.COLOR_BUFFER_BIT);
+            gl.drawArraysInstanced(gl.TRIANGLE_FAN, 0, 4, vertexCount);
+        } else {
+            gl.clear(gl.COLOR_BUFFER_BIT);
+        }
+        requestAnimationFrame(frame);
+         if (onFrameDrawn) {
+            const cb = onFrameDrawn;
+            onFrameDrawn = null;
+            cb();
+        }
+    };
+    frame();
+
+    // Camera controls
+    let startX=0, startY=0, down=false, button=0;
+
+    function orbit(dx, dy) {
+        let inv = invert4(viewMatrix);
+        inv = translate4(inv, 0, 0, radius);
+        inv = rotate4(inv, dx, 0, 1, 0);
+        inv = rotate4(inv, -dy, 1, 0, 0);
+        inv = translate4(inv, 0, 0, -radius);
+
+        if (!samplesWithoutTilt.includes(currentSampleName)) {
+            const fwd = vec3.normalize([inv[8], inv[9], inv[10]]);
+            let right = vec3.normalize(vec3.cross(worldUp, fwd));
+            if(vec3.norm(right) < 1e-6) {
+                right = vec3.normalize(vec3.cross([0,0,1], fwd));
+                if(vec3.norm(right) < 1e-6) {
+                    right = [1,0,0];
+                }
+            }
+            const up = vec3.normalize(vec3.cross(fwd, right));
+            
+            inv[0] = right[0]; inv[1] = right[1]; inv[2] = right[2];
+            inv[4] = up[0]; inv[5] = up[1]; inv[6] = up[2];
+            inv[8] = fwd[0]; inv[9] = fwd[1]; inv[10] = fwd[2];
+        }
+
+        viewMatrix = invert4(inv);
+    }
+
+    function zoom(delta) {
+        let inv = invert4(viewMatrix);
+        inv = translate4(inv, 0, 0, delta);
+        viewMatrix = invert4(inv);
+        inv = invert4(viewMatrix);
+        radius = vec3.norm(vec3.sub([inv[12], inv[13], inv[14]], sceneCenter));
+    }
+
+    const onPointerDown = (e) => {
+        e.preventDefault();
+        down = true;
+        button = e.button;
+        startX = e.clientX;
+        startY = e.clientY;
+    };
+
+    const onPointerMove = (e) => {
+        if (!down || !sceneCenter) return;
+        e.preventDefault();
+        const dx = e.clientX - startX;
+        const dy = e.clientY - startY;
+        startX = e.clientX;
+        startY = e.clientY;
+
+        if (button === 0) { // Left mouse button for rotation
+            orbit(dx * 0.005, dy * 0.005);
+        }
+    };
+
+    const onPointerUp = () => {
+        down = false;
+    };
+
+    canvas.addEventListener("mousedown", onPointerDown);
+    canvas.addEventListener("mousemove", onPointerMove);
+    canvas.addEventListener("mouseup", onPointerUp);
+    canvas.addEventListener("mouseleave", onPointerUp);
+    canvas.addEventListener("contextmenu", e => e.preventDefault());
+
+    // Keyboard controls
+    window.addEventListener("keydown", (e) => {
+        if (!sceneCenter) return;
+        let viewChanged = false;
+        const rotateSpeed = 0.03;
+        const zoomSpeed = 0.05;
+        if (e.key === 'ArrowUp') {
+            orbit(0, rotateSpeed);
+            viewChanged = true;
+        } else if (e.key === 'ArrowDown') {
+            orbit(0, -rotateSpeed);
+            viewChanged = true;
+        } else if (e.key === 'ArrowLeft') {
+            orbit(rotateSpeed, 0);
+            viewChanged = true;
+        } else if (e.key === 'ArrowRight') {
+            orbit(-rotateSpeed, 0);
+            viewChanged = true;
+        }
+
+        if(viewChanged) {
+            e.preventDefault();
+        }
+    });
+
+    // Touch controls
+    let lastTouchX=0, lastTouchY=0, touchDown=false, lastDist=0;
+    canvas.addEventListener('touchstart', (e) => {
+        if (!sceneCenter || e.touches.length === 0) return;
+        e.preventDefault();
+        touchDown = true;
+        if (e.touches.length === 1) {
+            lastTouchX = e.touches[0].clientX;
+            lastTouchY = e.touches[0].clientY;
+        } else if (e.touches.length === 2) {
+            const dx = e.touches[0].clientX - e.touches[1].clientX;
+            const dy = e.touches[0].clientY - e.touches[1].clientY;
+            lastDist = Math.hypot(dx, dy);
+        }
+    }, {passive: false});
+
+    canvas.addEventListener('touchmove', (e) => {
+        if (!touchDown || !sceneCenter || e.touches.length === 0) return;
+        e.preventDefault();
+        if (e.touches.length === 1) {
+            const dx = e.touches[0].clientX - lastTouchX;
+            const dy = e.touches[0].clientY - lastTouchY;
+            lastTouchX = e.touches[0].clientX;
+            lastTouchY = e.touches[0].clientY;
+            orbit(dx * 0.005, dy * 0.005);
+        }
+    }, {passive: false});
+
+    canvas.addEventListener('touchend', () => {
+        touchDown = false;
+    });
+
+    const selectFile = async (file) => {
+        const fr = new FileReader();
+        fr.onload = async () => {
+            const buffer = fr.result;
+            await loadCompressedSplat(buffer);
+        };
+        fr.readAsArrayBuffer(file);
+    };
+
+    const preventDefault = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+    };
+    document.addEventListener("dragenter", preventDefault);
+    document.addEventListener("dragover", preventDefault);
+    document.addEventListener("dragleave", preventDefault);
+    document.addEventListener("drop", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        selectFile(e.dataTransfer.files[0]);
+    });
+
+    const trackSamples = ['astronaut', 'robot', 'flower', 'cartwheel', 'boy', 'seagull', 'dog', 'train'];
+    const pointCloudSamplesDisplay = ['bridge', 'coast', 'shoji', 'hotel', 'grassland', 'food', 'trout', 'temple'];
+    let currentSampleList = 'track';
+
+    function createSampleButton(sampleName, container) {
+        const img = document.createElement('img');
+        img.src = `https://storage.googleapis.com/d4rt_assets/${sampleName}.png`;
+        img.classList.add('sample-img');
+        img.dataset.splat = `https://storage.googleapis.com/d4rt_assets/${sampleName}.splat`;
+        img.dataset.name = sampleName;
+        img.onclick = () => {
+            document.querySelectorAll('.sample-img').forEach(el => el.classList.remove('selected'));
+            img.classList.add('selected');
+            currentSampleName = img.dataset.name;
+            loadSplatFromUrl(img.dataset.splat);
+        };
+        img.oncontextmenu = (e) => e.preventDefault();
+        container.appendChild(img);
+    }
+
+    function populateSamples(sampleType) {
+        const samplesRow = document.getElementById('samples-row');
+        samplesRow.innerHTML = '';
+        const samples = sampleType === 'track' ? trackSamples : pointCloudSamplesDisplay;
+        samples.forEach(sampleName => createSampleButton(sampleName, samplesRow));
+
+        const firstSample = samplesRow.querySelector('.sample-img');
+        if(firstSample) {
+            firstSample.classList.add('selected');
+            currentSampleName = firstSample.dataset.name;
+            loadSplatFromUrl(firstSample.dataset.splat);
+        }
+    }
+
+    const trackButton = document.getElementById('track-button');
+    const pcButton = document.getElementById('pc-button');
+
+    trackButton.addEventListener('click', () => {
+        if (currentSampleList !== 'track') {
+            trackButton.classList.add('selected');
+            pcButton.classList.remove('selected');
+            currentSampleList = 'track';
+            populateSamples('track');
+        }
+    });
+
+    pcButton.addEventListener('click', () => {
+        if (currentSampleList !== 'pc') {
+            pcButton.classList.add('selected');
+            trackButton.classList.remove('selected');
+            currentSampleList = 'pc';
+            populateSamples('pc');
+        }
+    });
+
+    populateSamples('track');
+}
+
+async function loadSplatFromUrl(url) {
+    try {
+        document.getElementById('message').innerText = 'Loading example...';
+        document.getElementById('message').style.display = 'flex';
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error(`Failed to fetch splat file: ${response.statusText}`);
+        }
+        const buffer = await response.arrayBuffer();
+        await loadCompressedSplat(buffer);
+    } catch (error) {
+        console.error('Error loading splat file from URL:', error);
+        document.getElementById('message').innerText = 'Failed to load example. Drag and drop a .splat file to begin.';
+        document.getElementById('message').style.display = 'flex';
+    }
+}
+
+async function loadCompressedSplat(compressedBuffer) {
+    let buffer = compressedBuffer;
+    if (typeof DecompressionStream !== 'undefined') {
+        try {
+            const decompressedStream = new Blob([compressedBuffer]).stream().pipeThrough(new DecompressionStream('gzip'));
+            buffer = await new Response(decompressedStream).arrayBuffer();
+            console.log(`Decompressed splat file from ${compressedBuffer.byteLength} to ${buffer.byteLength} bytes.`);
+        } catch (e) {
+            console.log('Failed to decompress gzipped splat file, trying to load as uncompressed.');
+            buffer = compressedBuffer;
+        }
+    }
+    const dataView = new DataView(buffer);
+    let offset = 0;
+    const newViewMatrix = [];
+    for(let i=0; i<16; i++) {
+        newViewMatrix.push(dataView.getFloat32(offset, true));
+        offset += 4;
+    }
+    viewMatrix = newViewMatrix;
+    viewMatrixAtLoad = newViewMatrix.slice();
+
+    const scale_modifier = dataView.getFloat32(offset, true); offset += 4;
+    const accumulation_step = dataView.getInt32(offset, true); offset += 4;
+    const track_history_length = dataView.getInt32(offset, true); offset += 4;
+    const track_opacity = dataView.getFloat32(offset, true); offset += 4;
+    const track_thickness = dataView.getFloat32(offset, true); offset += 4;
+    const track_color_repetition = dataView.getInt32(offset, true); offset += 4;
+    const camera_frustum_size = dataView.getFloat32(offset, true); offset += 4;
+    const track_percentage = dataView.getInt32(offset, true); offset += 4;
+    let numDynamicPoints = dataView.getInt32(offset, true); offset += 4;
+    let numStaticPoints = dataView.getInt32(offset, true); offset += 4;
+    const isPointCloud = numStaticPoints === -1;
+    numFrames = dataView.getInt32(offset, true); offset += 4;
+    const hasCameraPoses = dataView.getInt32(offset, true); offset += 4;
+    const hasVideo = dataView.getInt32(offset, true); offset += 4;
+    const numVideoFrames = dataView.getInt32(offset, true); offset += 4;
+    const dark_bg = dataView.getInt32(offset, true); offset += 4;
+
+    const visualization = document.querySelector('.visualization');
+    const videoFrame = document.getElementById('video-frame');
+    if(dark_bg) {
+        visualization.style.backgroundColor = '#000';
+        if(videoFrame) videoFrame.style.boxShadow = '0px 0px 5px 0px rgba(255,255,255,0.5)';
+    } else {
+        visualization.style.backgroundColor = '#fff';
+        if(videoFrame) videoFrame.style.boxShadow = '0px 0px 5px 0px rgba(0,0,0,0.5)';
+    }
+
+    camera_data = null;
+    if(hasCameraPoses) {
+        camera_data = {poses: []};
+        for(let i=0; i<numFrames; i++) {
+            let pose = [[],[],[]];
+            for(let r=0; r<3; r++) {
+                for(let c=0; c<4; c++) {
+                    pose[r][c] = dataView.getFloat32(offset, true);
+                    offset+=4;
+                }
+            }
+            camera_data.poses.push(pose);
+        }
+    }
+
+    const dynamicPoints = [];
+    const staticPoints = [];
+    const pointCloudBuffers = [];
+    const quat = new Uint8Array([255, 128, 128, 128]);
+
+    if(isPointCloud) {
+        numDynamicPoints = 0;
+        numStaticPoints = 0;
+        for(let t=0; t<numFrames; t++) {
+            const npts = dataView.getInt32(offset, true); offset += 4;
+            const pcBuffer = new ArrayBuffer(npts * 40);
+            const pcU8View = new Uint8Array(pcBuffer);
+            const pcF32View = new Float32Array(pcBuffer);
+            for(let i=0; i<npts; i++) {
+                pcF32View[i*10+0] = dataView.getFloat32(offset, true) * splatScale;
+                pcF32View[i*10+1] = dataView.getFloat32(offset+4, true) * splatScale;
+                pcF32View[i*10+2] = dataView.getFloat32(offset+8, true) * splatScale;
+                offset += 12;
+                pcF32View[i*10+3] = 0.04 * splatScale * scale_modifier;
+                pcF32View[i*10+4] = 0.04 * splatScale * scale_modifier;
+                pcF32View[i*10+5] = 0.04 * splatScale * scale_modifier;
+                pcU8View.set(new Uint8Array(buffer, offset, 4), i*40+24);
+                offset += 4;
+                pcU8View.set(quat, i*40+28);
+                pcU8View[i*40+34] = 0; // Not a track
+            }
+            pointCloudBuffers.push(new Uint8Array(pcBuffer));
+        }
+    } else {
+        for(let i=0; i<numDynamicPoints; i++) {
+            const rgba = new Uint8Array(buffer, offset, 4);
+            offset += 4;
+            const traj = [];
+            for(let t=0; t<numFrames; t++) {
+                const pos = new Float32Array(buffer, offset, 3);
+                offset += 12;
+                traj.push([pos[0] * splatScale, pos[1] * splatScale, pos[2] * splatScale]);
+            }
+            dynamicPoints.push({rgba, traj});
+        }
+        for(let i=0; i<numStaticPoints; i++) {
+            const rgba = new Uint8Array(buffer, offset, 4);
+            offset += 4;
+            const pos = new Float32Array(buffer, offset, 3);
+            offset += 12;
+            staticPoints.push({rgba, pos: [pos[0] * splatScale, pos[1] * splatScale, pos[2] * splatScale]});
+        }
+    }
+
+    if(videoFrameURLs.length > 0) {
+        videoFrameURLs.forEach(url => URL.revokeObjectURL(url));
+        videoFrameURLs = [];
+    }
+    if(videoFrame) videoFrame.style.display = 'none';
+
+    if(hasVideo && numVideoFrames > 0) {
+        for(let i=0; i<numVideoFrames; i++) {
+            const frameLength = dataView.getUint32(offset, true);
+            offset += 4;
+            const frameData = new Uint8Array(buffer, offset, frameLength);
+            offset += frameLength;
+            const blob = new Blob([frameData], {type: 'image/png'});
+            videoFrameURLs.push(URL.createObjectURL(blob));
+        }
+        if(videoFrame) {
+            videoFrame.style.display = 'block';
+            videoFrame.src = videoFrameURLs[0];
+
+            // Scale up/down based on shape
+            videoFrame.onload = () => {
+                const aspect = videoFrame.naturalWidth / videoFrame.naturalHeight;
+                // If aspect ratio is wider than 1 (Landscape), lock Width to 35%. 
+                // Otherwise (Portrait), lock Height to 50%.
+                if (aspect > 1) {
+                    videoFrame.style.width = '35%';
+                    videoFrame.style.height = 'auto';
+                } else {
+                    videoFrame.style.width = 'auto';
+                    videoFrame.style.height = '50%';
+                }
+            };
+        }
+    }
+
+    if(samplesBackward.includes(currentSampleName)) {
+        pointCloudBuffers.reverse();
+        if(videoFrameURLs.length > 0) {
+            videoFrameURLs.reverse();
+            if(videoFrame) videoFrame.src = videoFrameURLs[0];
+        }
+    }
+
+    if (isPointCloud && pointCloudBuffers.length > 0 && pointCloudBuffers[0].length > 0) {
+        const f_buffer = new Float32Array(pointCloudBuffers[0].buffer);
+        let sum_depth = 0;
+        let count = 0;
+        for (let i = 0; i < pointCloudBuffers[0].length / 40; i++) {
+            const p = [f_buffer[i*10], f_buffer[i*10+1], f_buffer[i*10+2]];
+            if (!isNaN(p[0])) {
+                const depth = viewMatrixAtLoad[2]*p[0] + viewMatrixAtLoad[6]*p[1] + viewMatrixAtLoad[10]*p[2] + viewMatrixAtLoad[14];
+                if (depth > 0) {
+                  sum_depth += depth;
+                  count++;
+                }
+            }
+        }
+        const meanDepth = count > 0 ? sum_depth / count : 5.0;
+        const invV = invert4(viewMatrixAtLoad);
+        sceneCenter = [
+            invV[8]*meanDepth + invV[12], 
+            invV[9]*meanDepth + invV[13], 
+            invV[10]*meanDepth + invV[14]
+        ];
+        const camPos = [invV[12], invV[13], invV[14]];
+        const toCam = vec3.sub(camPos, sceneCenter);
+        radius = vec3.norm(toCam);
+        if(radius < 1e-4) radius = 5.0;
+        azimuth = Math.atan2(toCam[0], toCam[2]);
+        elevation = Math.asin(toCam[1] / radius);
+    } else if (numDynamicPoints > 0) {
+        const meanDepth = getMeanDepth(dynamicPoints, viewMatrixAtLoad);
+        const invV = invert4(viewMatrixAtLoad);
+        sceneCenter = [
+            invV[8]*meanDepth + invV[12], 
+            invV[9]*meanDepth + invV[13], 
+            invV[10]*meanDepth + invV[14]
+        ];
+        const camPos = [invV[12], invV[13], invV[14]];
+        const toCam = vec3.sub(camPos, sceneCenter);
+        radius = vec3.norm(toCam);
+        if(radius < 1e-4) radius = 5.0;
+        azimuth = Math.atan2(toCam[0], toCam[2]);
+        elevation = Math.asin(toCam[1] / radius);
+    } else if (numStaticPoints > 0) {
+        const meanDepth = getMeanDepth(staticPoints.map(p => ({traj: [p.pos]})), viewMatrixAtLoad);
+        const invV = invert4(viewMatrixAtLoad);
+        sceneCenter = [
+            invV[8]*meanDepth + invV[12], 
+            invV[9]*meanDepth + invV[13], 
+            invV[10]*meanDepth + invV[14]
+        ];
+        const camPos = [invV[12], invV[13], invV[14]];
+        const toCam = vec3.sub(camPos, sceneCenter);
+        radius = vec3.norm(toCam);
+        if(radius < 1e-4) radius = 5.0;
+        azimuth = Math.atan2(toCam[0], toCam[2]);
+        elevation = Math.asin(toCam[1] / radius);
+    } else {
+        sceneCenter = [0,0,0];
+        const invV = invert4(viewMatrixAtLoad);
+        const camPos = [invV[12], invV[13], invV[14]];
+        const toCam = vec3.sub(camPos, sceneCenter);
+        radius = vec3.norm(toCam);
+        if(radius < 1e-4) radius = 5.0;
+        azimuth = Math.atan2(toCam[0], toCam[2]);
+        elevation = Math.asin(toCam[1] / radius);
+    }
+
+    const isPointCloudSample = pointCloudSamples.includes(currentSampleName) || isPointCloud;
+    let trackColors, dynamicPointsForTracks;
+    if(!isPointCloud) {
+        const trackRatio = track_percentage / 100.0;
+        const step = Math.max(1, Math.round(1 / trackRatio));
+        dynamicPointsForTracks = [];
+        for(let i=0; i<dynamicPoints.length; i+=step) {
+            dynamicPointsForTracks.push(dynamicPoints[i]);
+        }
+
+        const heights = dynamicPointsForTracks.map(p => p.traj[0][1]);
+        const widths = dynamicPointsForTracks.map(p => p.traj[0][0]);
+        trackColors = getColorsFromCoords(heights, widths, track_color_repetition);
+
+        const numTotalPoints = numDynamicPoints + numStaticPoints;
+        const pointCloudSplatFrameSize = numTotalPoints * 40;
+        
+        for(let t=0; t<numFrames; t++) {
+            const pcBuffer = new ArrayBuffer(pointCloudSplatFrameSize);
+            const pcU8View = new Uint8Array(pcBuffer);
+            const pcF32View = new Float32Array(pcBuffer);
+            let pointOffset = 0;
+            for(let i=0; i<dynamicPoints.length; i++) {
+                const p = dynamicPoints[i];
+                pcF32View[pointOffset*10+0] = p.traj[t][0];
+                pcF32View[pointOffset*10+1] = p.traj[t][1];
+                pcF32View[pointOffset*10+2] = p.traj[t][2];
+                pcF32View[pointOffset*10+3] = 0.04 * splatScale * scale_modifier;
+                pcF32View[pointOffset*10+4] = 0.04 * splatScale * scale_modifier;
+                pcF32View[pointOffset*10+5] = 0.04 * splatScale * scale_modifier;
+                pcU8View.set(p.rgba, pointOffset*40+24);
+                pcU8View.set(quat, pointOffset*40+28);
+                pcU8View[pointOffset*40+34] = 0; // Not a track
+                pointOffset++;
+            }
+            for(let i=0; i<numStaticPoints; i++) {
+                const p = staticPoints[i];
+                pcF32View[pointOffset*10+0] = p.pos[0];
+                pcF32View[pointOffset*10+1] = p.pos[1];
+                pcF32View[pointOffset*10+2] = p.pos[2];
+                pcF32View[pointOffset*10+3] = 0.04 * splatScale * scale_modifier;
+                pcF32View[pointOffset*10+4] = 0.04 * splatScale * scale_modifier;
+                pcF32View[pointOffset*10+5] = 0.04 * splatScale * scale_modifier;
+                pcU8View.set(p.rgba, pointOffset*40+24);
+                pcU8View.set(quat, pointOffset*40+28);
+                pcU8View[pointOffset*40+34] = 0; // Not a track
+                pointOffset++;
+            }
+            pointCloudBuffers.push(new Uint8Array(pcBuffer));
+        }
+    }
+
+    splatFrames = [];
+    for(let t=0; t<numFrames; t++) {
+        if (isPointCloudSample) {
+            const indices = [t];
+            for(let i=0; i<t; i++) {
+                if (i % accumulation_step_point_clouds === 0) {
+                    indices.push(i);
+                }
+            }
+            const unique_indices = [...new Set(indices)].sort((a, b) => a - b);
+
+            if (unique_indices.length <= 1) {
+                splatFrames.push(pointCloudBuffers[t]);
+            } else {
+                const framesToCombine = unique_indices.map(i => pointCloudBuffers[i]);
+                let total_length = 0;
+                for(const f of framesToCombine) total_length += f.length;
+
+                const combinedFrame = new Uint8Array(total_length);
+                let currentOffset = 0;
+                for(const f of framesToCombine) {
+                    combinedFrame.set(f, currentOffset);
+                    currentOffset += f.length;
+                }
+                splatFrames.push(combinedFrame);
+            }
+        } else {
+            const trackSplats = generateTracksForFrame(t, dynamicPointsForTracks, trackColors, {
+                track_history_length,
+                track_opacity,
+                track_thickness,
+            });
+            const pcBufferForFrame = pointCloudBuffers[t];
+            const combinedFrame = new Uint8Array(pcBufferForFrame.byteLength + trackSplats.length);
+            combinedFrame.set(pcBufferForFrame, 0);
+            combinedFrame.set(trackSplats, pcBufferForFrame.byteLength);
+            splatFrames.push(combinedFrame);
+        }
+    }
+
+    document.getElementById("message").style.display = 'none';
+    if(numFrames > 1) {
+        document.getElementById("timeline").style.display = 'block';
+        const slider = document.getElementById("frame-slider");
+        slider.max = numFrames - 1;
+        slider.value = 0;
+        const playPauseBtn = document.getElementById("play-pause");
+        function updatePlayPauseVisuals() {
+            if (playing) {
+                playPauseBtn.innerHTML = "<span>&#9208;</span>";
+                playPauseBtn.classList.remove("paused");
+            } else {
+                playPauseBtn.innerHTML = "<span>&#9654;</span>";
+                playPauseBtn.classList.add("paused");
+            }
+        }
+        playPauseBtn.onclick = () => {
+            playing = !playing;
+            updatePlayPauseVisuals();
+            if(playing) lastFrameTimeStamp = performance.now();
+        };
+        slider.oninput = () => {
+            currentFrame = parseInt(slider.value);
+            splatData = splatFrames[currentFrame];
+            worker.postMessage({
+                buffer: splatData.buffer,
+                vertexCount: Math.floor(splatData.length / 40),
+            });
+            playing = false;
+            updatePlayPauseVisuals();
+            if (videoFrameURLs && videoFrameURLs.length > 0) {
+                const videoFrame = document.getElementById('video-frame');
+                if(videoFrame) videoFrame.src = videoFrameURLs[currentFrame];
+            }
+        };
+    } else {
+         document.getElementById("timeline").style.display = 'none';
+    }
+
+    currentFrame = 0;
+    splatData = splatFrames[0];
+    worker.postMessage({
+        buffer: splatData.buffer,
+        vertexCount: Math.floor(splatData.length / 40),
+    });
+}
+run();
+</script>
+    <script>
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        let player;
+        let videoPlaying = false;
+        let ytPlayerReady = false;
+        let timeUpdateInterval;
+        let qualitySet = false;
+
+        function scalePlayer() {
+            const wrapper = document.getElementById('player-wrapper');
+            const playerDiv = document.getElementById('youtube-player');
+            if (wrapper && playerDiv) {
+                const scale = wrapper.clientWidth / 1920;
+                playerDiv.style.transform = `scale(${scale})`;
+            }
+        }
+
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('youtube-player', {
+                height: '100%',
+                width: '100%',
+                videoId: '4u5JxhyZ86g',
+                playerVars: {
+                    'playsinline': 1,
+                    'autoplay': 1,
+                    'mute': 1,
+                    'loop': 1,
+                    'controls': 1,
+                    'rel': 0,
+                    'modestbranding': 1
+                },
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+            scalePlayer();
+            event.target.setPlaybackQuality('hd1080');
+            ytPlayerReady = true;
+            setupYouTubeControls();
+        }
+
+        function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.PLAYING) {
+                if(!qualitySet) {
+                    event.target.setPlaybackQuality('hd1080');
+                    qualitySet = true;
+                }
+                videoPlaying = true;
+                if (!timeUpdateInterval) {
+                    timeUpdateInterval = setInterval(updateVideoTime, 250);
+                }
+            } else {
+                videoPlaying = false;
+                if (event.data !== YT.PlayerState.BUFFERING && timeUpdateInterval) {
+                    clearInterval(timeUpdateInterval);
+                    timeUpdateInterval = null;
+                }
+            }
+        }
+
+        function updateVideoTime() {
+            if (!player || !ytPlayerReady || typeof player.getCurrentTime !== 'function') return;
+            const currentTime = player.getCurrentTime();
+            const chapterButtons = document.querySelectorAll('.chapters button');
+
+            let activeChapter = null;
+            chapterButtons.forEach(btn => {
+                btn.classList.remove('selected');
+                const time = parseFloat(btn.getAttribute('data-time'));
+                if(currentTime >= time) {
+                    activeChapter = btn;
+                }
+            });
+            if(activeChapter) {
+                activeChapter.classList.add('selected');
+            }
+        }
+
+        function setupYouTubeControls() {
+            const chapterButtons = document.querySelectorAll('.chapters button');
+
+            chapterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    if (!ytPlayerReady) return;
+                    const time = button.getAttribute('data-time');
+                    player.seekTo(time, true);
+                    player.playVideo();
+                });
+            });
+
+            const muteButton = document.getElementById('mute-button');
+            if (muteButton) {
+                muteButton.addEventListener('click', () => {
+                    if (!ytPlayerReady) return;
+                    if (player.isMuted()) {
+                        player.unMute();
+                        muteButton.innerHTML = '<i class="fa-solid fa-volume-high"></i>';
+                    } else {
+                        player.mute();
+                        muteButton.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
+                    }
+                });
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            if (ytPlayerReady) {
+                 setupYouTubeControls();
+            }
+            window.addEventListener('resize', scalePlayer);
+            document.querySelectorAll('.collapsible h2').forEach(header => {
+                header.addEventListener('click', () => {
+                    header.parentElement.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
