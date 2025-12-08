@@ -647,9 +647,9 @@
         <p>A global self-attention encoder first transforms the input video into the latent <em>Global Scene Representation</em>, which is passed to a lightweight decoder. The decoder can be independently queried for the <em>3D position</em> P of any given 2D point (<em>u</em>, <em>v</em>) from the source timestep <em>t</em><sub>src</sub> at target timestep <em>t</em><sub>tgt</sub> in camera coordinate <em>t</em><sub>cam</sub>, unlocking full decoding at any point in space and time. The query also contains an embedding of the local frame patch centered around (<em>u</em>, <em>v</em>), providing additional spatial context.</p>
     </div>
 
-    <div class="capabilities collapsible">
+    <div class="capabilities">
         <h2>Capabilities</h2>
-        <div class="collapsible-content">
+        <div>
             <div class="capabilities-images fig-container">
                 <img src="https://storage.googleapis.com/d4rt_assets/D4RT_capabilities_left.gif" alt="D4RT capabilities left">
                 <img src="https://storage.googleapis.com/d4rt_assets/D4RT_capabilities_right.gif" alt="D4RT capabilities right">
@@ -699,9 +699,15 @@
     </div>
 
     <div class="acknowledgements collapsible">
-        <h2>Acknowledgements</h2>
+        <h2>Contributions</h2>
         <div class="collapsible-content">
             <p>MS led the project, with management support from JZ. MS proposed the SRT-style decoder, and GL proposed local RGB patches and tracking-all-pixels. CZ, GL, IR, and MS contributed to the core model design. LM, SS, IR, and SK designed and created training datasets. CZ, GL, and MS carried out the major implementation, with significant contributions from SK, IR, LM, and JX. CZ drove the model experimentation. Comprehensive evaluations and data pipelines were set up by CZ, GL, SK, IR, LM, JX, SS, and MS. Visualizations were produced by GL, IR and JX. RS, JB, RH, ZG, and AZ provided project support, advising, and guidance.</p>
+        </div>
+    </div>
+
+    <div class="acknowledgements collapsible">
+        <h2>Acknowledgements</h2>
+        <div class="collapsible-content">
             <p>We thank a number of colleagues and advisors for making this work possible. We thank Saurabh Saxena, Kaiming He, Carl Doersch, Leonidas Guibas, Noah Snavely, Ben Poole, Joao Carreira, Pauline Luc, Yi Yang, Howard Huang, Huizhong Chen, Cordelia Schmid for providing advice during the project; Gabriel Brostow, for advising SK during the course of the project and for providing feedback on the manuscript; Relja Aranđelović and Maks Ovsjanikov for providing feedback on the manuscript; Tengda Han and Dilara Gokay for their help during early-stage development; Aravindh Mahendran for helping with code reviews; Daniel Duckworth for helping with visualizations and comparisons against baselines; and Alberto García and Jesús Pérez for the invaluable contributions to data generation and collection.</p>
             <p>Finally, we thank the authors of the <a href="https://github.com/antimatter15/splat" target="_blank">splat viewer</a> for their WebGL renderer that we adapted for our 4D reconstruction visualizations.</p>
         </div>
