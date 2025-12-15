@@ -15,8 +15,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
+        .icon {
+            display: block;
+            width: 1em;
+            height: 1em;
+            fill: currentColor;
+        }
         :root {
             /* DESKTOP DIMENSIONS */
             --btn-height: 38px;
@@ -193,12 +198,12 @@
             z-index: 1;
         }
         #timeline {
-            display: none; 
-            position: absolute; 
-            bottom: 20px; 
-            left: 10%; 
-            width: 80%; 
-            z-index: 999; 
+            display: none;
+            position: absolute;
+            bottom: 20px;
+            left: 10%;
+            width: 80%;
+            z-index: 999;
             text-align: center;
         }
         button.icon-button {
@@ -229,10 +234,6 @@
         #play-pause span {
             display: inline-block;
             line-height: 1;
-        }
-        #play-pause.paused span {
-            transform: translate(1px, 1px);
-            font-size: 0.9em;
         }
         #frame-slider {
             -webkit-appearance: none;
@@ -302,11 +303,12 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.2);
             pointer-events: none;
         }
-        .info-tooltip-text i {
+        .info-tooltip-text .icon {
             display: inline-block;
             width: 1.1em;
             text-align: center;
             margin-right: 4px;
+            height: 1em;
         }
         .info-tooltip-container .info-tooltip-text::after {
             content: "";
@@ -323,7 +325,8 @@
             opacity: 1;
         }
 
-        #mute-button, #info-button {
+        #mute-button,
+        #info-button {
             background-color: #1a73e8;
             color: white;
             border: none;
@@ -368,7 +371,7 @@
         .sample-type-button {
             height: auto;
             flex: 1;
-            box-sizing: border-box; 
+            box-sizing: border-box;
 
             display: flex;
             align-items: center;
@@ -614,7 +617,7 @@
     <div class="video-container">
         <div style="display:flex; align-items:center; padding: 30px 30px 0; margin-bottom: 10px; gap: 10px;">
             <h2 style="padding:0; margin:0; margin-top:0; text-align: left; font-size: 1.5em;">Overview</h2>
-            <button id="mute-button"><i class="fa-solid fa-volume-xmark"></i></button>
+            <button id="mute-button"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" aria-hidden="true" focusable="false"><path fill="currentColor" d="M301.1 34.8C312.6 40 320 51.4 320 64V448c0 12.6-7.4 24-18.9 29.2s-25 3.1-34.4-5.3L131.8 352H64c-35.3 0-64-28.7-64-64V224c0-35.3 28.7-64 64-64h67.8L266.7 40.1c9.4-8.4 22.9-10.4 34.4-5.3zM425 167l55 55 55-55c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-55 55 55 55c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-55-55-55 55c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l55-55-55-55c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0z"/></svg></button>
         </div>
         <div id="player-wrapper" style="aspect-ratio: 16/9; margin-bottom: 10px; width: calc(100% - 20px); display: block; margin-left: 10px; margin-right: 10px; overflow: hidden;">
             <div id="youtube-player" style="width: 1920px; height: 1080px; transform-origin: 0 0;"></div>
@@ -664,16 +667,16 @@
         <div style="display:flex; align-items:center; gap: 10px; margin-bottom:1em">
             <h2 style="margin-bottom:0">Interactive 4D Reconstruction</h2>
             <div class="info-tooltip-container">
-                <button id="info-button"><i class="fa-solid fa-info"></i></button>
-                <span class="info-tooltip-text"><i class="fa-solid fa-hand-pointer"></i>Click and drag to rotate the scene.<br><br><i class="fa-regular fa-file"></i>For reduced file size and faster loading, up to 90% of points have been removed from each scene.</span>
+                <button id="info-button"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" aria-hidden="true" focusable="false"><path fill="currentColor" d="M48 80a48 48 0 1 1 96 0A48 48 0 1 1 48 80zM0 224c0-17.7 14.3-32 32-32l64 0c17.7 0 32 14.3 32 32l0 224 32 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 512c-17.7 0-32-14.3-32-32s14.3-32 32-32l32 0 0-192-32 0c-17.7 0-32-14.3-32-32z"/></svg></button>
+                <span class="info-tooltip-text"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" aria-hidden="true" focusable="false"><path fill="currentColor" d="M128 40c0-22.1 17.9-40 40-40s40 17.9 40 40l0 148.2c8.5-7.6 19.7-12.2 32-12.2c20.6 0 38.2 13 45 31.2c8.8-9.3 21.2-15.2 35-15.2c25.3 0 46 19.5 47.9 44.3c8.5-7.7 19.8-12.3 32.1-12.3c26.5 0 48 21.5 48 48l0 48 0 16 0 48c0 70.7-57.3 128-128 128l-16 0-64 0-.1 0-5.2 0c-5 0-9.9-.3-14.7-1c-55.3-5.6-106.2-34-140-79L8 336c-13.3-17.7-9.7-42.7 8-56s42.7-9.7 56 8l56 74.7L128 40zM240 304c0-8.8-7.2-16-16-16s-16 7.2-16 16l0 96c0 8.8 7.2 16 16 16s16-7.2 16-16l0-96zm48-16c-8.8 0-16 7.2-16 16l0 96c0 8.8 7.2 16 16 16s16-7.2 16-16l0-96c0-8.8-7.2-16-16-16zm80 16c0-8.8-7.2-16-16-16s-16 7.2-16 16l0 96c0 8.8 7.2 16 16 16s16-7.2 16-16l0-96z"/></svg>Click and drag to rotate the scene.<br><br><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" aria-hidden="true" focusable="false"><path fill="currentColor" d="M0 64C0 28.7 28.7 0 64 0H224V128c0 17.7 14.3 32 32 32H384V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V64zm384 64H256V0L384 128z"/></svg>For reduced file size and faster loading, up to 90% of points have been removed from each scene.</span>
             </div>
         </div>
         <div class="visualization">
             <div id="message">Loading example...</div>
             <canvas id="canvas"></canvas>
-            <img id="video-frame" style="position: absolute; top: 20px; left: 20px; width: auto; height: auto; z-index: 1000; border: none; display: none; border-radius: 30px; box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5); pointer-events: none;" />
+            <img id="video-frame" style="position: absolute; top: 20px; left: 20px; width: auto; height: auto; z-index: 1000; border: none; display: none; border-radius: 30px; box-shadow: 0 0 5px 0 rgba(0,0,0,0.5); pointer-events: none;" />
             <div id="timeline">
-              <button id="play-pause" class="icon-button"><span>&#9208;</span></button>
+              <button id="play-pause" class="icon-button"><svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" aria-hidden="true" focusable="false"><path fill="currentColor" d="M48 64C21.5 64 0 85.5 0 112V400c0 26.5 21.5 48 48 48H80c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H48zm192 0c-26.5 0-48 21.5-48 48V400c0 26.5 21.5 48 48 48h32c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H240z"/></svg></button>
               <input type="range" id="frame-slider" min="0" max="100" value="0">
             </div>
         </div>
@@ -725,19 +728,19 @@ let currentFrame = 0;
 let numFrames = 0;
 let playing = true;
 let lastFrameTimeStamp = 0;
-let scene_fps = 10;
+let sceneFps = 10;
 let splatFrames = [];
 let vertexCount = 0;
 let onFrameDrawn = null;
-let track_data = null;
-let camera_data = null;
+let trackData = null;
+let cameraData = null;
 let videoFrameURLs = [];
 const splatScale = 0.6;
 const samplesWithoutTilt = ['bread', 'grassland', 'pamukkale', 'temple', 'coast'];
 const samplesBackward = ['bridge', 'desert', 'townhouses', 'hotel', 'plane', 'terrace'];
 let currentSampleName = '';
 const pointCloudSamples = ['mars', 'colosseum', 'bridge', 'pamukkale', 'desert', 'townhouses', 'coast', 'shoji', 'hotel', 'plane', 'grassland', 'terrace', 'food', 'figs', 'trout', 'temple'];
-const accumulation_step_point_clouds = 1;
+const accumulationStepPointClouds = 1;
 
 const vec3 = {
     sub: (a,b) => [a[0]-b[0], a[1]-b[1], a[2]-b[2]],
@@ -751,23 +754,30 @@ const vec3 = {
 };
 
 function getMeanDepth(points, viewMat) {
-    let sum_depth = 0;
+    let sumDepth = 0;
     let count = 0;
     for (let i = 0; i < points.length; i++) {
         const p = points[i].traj[0];
         if (!isNaN(p[0])) {
             const depth = viewMat[2]*p[0] + viewMat[6]*p[1] + viewMat[10]*p[2] + viewMat[14];
             if (depth > 0) {
-              sum_depth += depth;
+              sumDepth += depth;
               count++;
             }
         }
     }
-    return count > 0 ? sum_depth / count : 5.0;
+    return count > 0 ? sumDepth / count : 5.0;
 }
 
 function hsvToRgb(h, s, v) {
-    let r, g, b, i, f, p, q, t;
+    let r;
+    let g;
+    let b;
+    let i;
+    let f;
+    let p;
+    let q;
+    let t;
     if (arguments.length === 1) {
         s = h.s, v = h.v, h = h.h;
     }
@@ -792,39 +802,42 @@ function hsvToRgb(h, s, v) {
 }
 
 function getColorsFromCoords(heights, widths, repetition) {
-    const num_points = heights.length;
-    if (num_points === 0) {
+    const numPoints = heights.length;
+    if (numPoints === 0) {
         return [];
     }
 
-    let min_h = Infinity, max_h = -Infinity, min_w = Infinity, max_w = -Infinity;
-    for(let i=0; i<num_points; ++i) {
-        min_h = Math.min(min_h, heights[i]);
-        max_h = Math.max(max_h, heights[i]);
-        min_w = Math.min(min_w, widths[i]);
-        max_w = Math.max(max_w, widths[i]);
+    let minH = Infinity;
+    let maxH = -Infinity;
+    let minW = Infinity;
+    let maxW = -Infinity;
+    for(let i=0; i<numPoints; ++i) {
+        minH = Math.min(minH, heights[i]);
+        maxH = Math.max(maxH, heights[i]);
+        minW = Math.min(minW, widths[i]);
+        maxW = Math.max(maxW, widths[i]);
     }
-    const spread_h = max_h - min_h;
-    const spread_w = max_w - min_w;
+    const spreadH = maxH - minH;
+    const spreadW = maxW - minW;
 
     const colors = [];
-    for (let i = 0; i < num_points; i++) {
-        const norm_h = spread_h > 1e-6 ? (heights[i] - min_h) / spread_h : 0;
-        const norm_w = spread_w > 1e-6 ? (widths[i] - min_w) / spread_w : 0;
+    for (let i = 0; i < numPoints; i++) {
+        const normH = spreadH > 1e-6 ? (heights[i] - minH) / spreadH : 0;
+        const normW = spreadW > 1e-6 ? (widths[i] - minW) / spreadW : 0;
 
-        const t_h_rep = norm_h * repetition;
-        let t_h_final = t_h_rep - Math.floor(t_h_rep);
-        if (Math.floor(t_h_rep) % 2 == 1) {
-            t_h_final = 1.0 - t_h_final;
+        const tHRep = normH * repetition;
+        let tHFinal = tHRep - Math.floor(tHRep);
+        if (Math.floor(tHRep) % 2 == 1) {
+            tHFinal = 1.0 - tHFinal;
         }
 
-        const t_w_rep = norm_w * repetition;
-        let t_w_final = t_w_rep - Math.floor(t_w_rep);
-        if (Math.floor(t_w_rep) % 2 == 1) {
-            t_w_final = 1.0 - t_w_final;
+        const tWRep = normW * repetition;
+        let tWFinal = tWRep - Math.floor(tWRep);
+        if (Math.floor(tWRep) % 2 == 1) {
+            tWFinal = 1.0 - tWFinal;
         }
 
-        const t = (t_h_final + t_w_final) / 2.0;
+        const t = (tHFinal + tWFinal) / 2.0;
         colors.push(hsvToRgb(t, 1, 1));
     }
     return colors;
@@ -836,9 +849,9 @@ function generateTracksForFrame(frame_idx, dynamicPoints, trackColors, p) {
     let splats = [];
     for (let track_idx=0; track_idx<dynamicPoints.length; ++track_idx) {
         const color = trackColors[track_idx];
-        const start_i = Math.max(0, frame_idx - p.track_history_length);
-        const num_history_segments = frame_idx - start_i;
-        for (let i = start_i; i < frame_idx; i++) {
+        const startI = Math.max(0, frame_idx - p.trackHistoryLength);
+        const numHistorySegments = frame_idx - startI;
+        for (let i = startI; i < frame_idx; i++) {
             const p1 = dynamicPoints[track_idx].traj[i];
             const p2 = dynamicPoints[track_idx].traj[i+1];
 
@@ -852,10 +865,10 @@ function generateTracksForFrame(frame_idx, dynamicPoints, trackColors, p) {
 
             const dir = [vec[0] / length, vec[1] / length, vec[2] / length];
 
-            const seg_idx_from_oldest = i - start_i;
-            const opacity_factor =
-                num_history_segments > 0
-                    ? (seg_idx_from_oldest + 1) / num_history_segments
+            const segIdxFromOldest = i - startI;
+            const opacityFactor =
+                numHistorySegments > 0
+                    ? (segIdxFromOldest + 1) / numHistorySegments
                     : 1.0;
 
             for (let j = 0; j < numGaussians; j++) {
@@ -867,23 +880,23 @@ function generateTracksForFrame(frame_idx, dynamicPoints, trackColors, p) {
 
                 const scale = [
                     (length / numGaussians) * trackLengthMultiplier,
-                    p.track_thickness,
-                    p.track_thickness,
+                    p.trackThickness,
+                    p.trackThickness,
                 ];
 
                 let q = [1, 0, 0, 0];
                 const dot = dir[0];
                 if (Math.abs(dot) < 0.9999) {
                     const cross = [0, -dir[2], dir[1]];
-                    const cross_norm = Math.sqrt(
+                    const crossNorm = Math.sqrt(
                         cross[0] * cross[0] +
                             cross[1] * cross[1] +
                             cross[2] * cross[2],
                     );
                     const axis = [
-                        cross[0] / cross_norm,
-                        cross[1] / cross_norm,
-                        cross[2] / cross_norm,
+                        cross[0] / crossNorm,
+                        cross[1] / crossNorm,
+                        cross[2] / crossNorm,
                     ];
                     const angle = Math.acos(dot);
                     const s = Math.sin(angle / 2);
@@ -897,7 +910,7 @@ function generateTracksForFrame(frame_idx, dynamicPoints, trackColors, p) {
                     scale,
                     rot: q,
                     color,
-                    opacity: p.track_opacity * opacity_factor,
+                    opacity: p.trackOpacity * opacityFactor,
                 });
             }
         }
@@ -905,39 +918,39 @@ function generateTracksForFrame(frame_idx, dynamicPoints, trackColors, p) {
 
     const rowLength = 40;
     const buffer = new ArrayBuffer(splats.length * rowLength);
-    const f_buffer = new Float32Array(buffer);
-    const u_buffer = new Uint8Array(buffer);
+    const fBuffer = new Float32Array(buffer);
+    const uBuffer = new Uint8Array(buffer);
 
     for (let i = 0; i < splats.length; i++) {
         const s = splats[i];
 
-        f_buffer[i * 10 + 0] = s.center[0];
-        f_buffer[i * 10 + 1] = s.center[1];
-        f_buffer[i * 10 + 2] = s.center[2];
+        fBuffer[i * 10 + 0] = s.center[0];
+        fBuffer[i * 10 + 1] = s.center[1];
+        fBuffer[i * 10 + 2] = s.center[2];
 
-        f_buffer[i * 10 + 3] = s.scale[0];
-        f_buffer[i * 10 + 4] = s.scale[1];
-        f_buffer[i * 10 + 5] = s.scale[2];
+        fBuffer[i * 10 + 3] = s.scale[0];
+        fBuffer[i * 10 + 4] = s.scale[1];
+        fBuffer[i * 10 + 5] = s.scale[2];
 
-        const rgba_offset = i * rowLength + 24;
-        u_buffer[rgba_offset + 0] = s.color[0];
-        u_buffer[rgba_offset + 1] = s.color[1];
-        u_buffer[rgba_offset + 2] = s.color[2];
-        u_buffer[rgba_offset + 3] = s.opacity * 255;
+        const rgbaOffset = i * rowLength + 24;
+        uBuffer[rgbaOffset + 0] = s.color[0];
+        uBuffer[rgbaOffset + 1] = s.color[1];
+        uBuffer[rgbaOffset + 2] = s.color[2];
+        uBuffer[rgbaOffset + 3] = s.opacity * 255;
 
-        const rot_offset = i * rowLength + 28;
-        const norm_sq =
+        const rotOffset = i * rowLength + 28;
+        const normSq =
             s.rot[0] * s.rot[0] +
             s.rot[1] * s.rot[1] +
             s.rot[2] * s.rot[2] +
             s.rot[3] * s.rot[3];
-        const norm = norm_sq > 0 ? Math.sqrt(norm_sq) : 1;
-        u_buffer[rot_offset + 0] = ((s.rot[0] / norm) * 128 + 128);
-        u_buffer[rot_offset + 1] = ((s.rot[1] / norm) * 128 + 128);
-        u_buffer[rot_offset + 2] = ((s.rot[2] / norm) * 128 + 128);
-        u_buffer[rot_offset + 3] = ((s.rot[3] / norm) * 128 + 128);
+        const norm = normSq > 0 ? Math.sqrt(normSq) : 1;
+        uBuffer[rotOffset + 0] = ((s.rot[0] / norm) * 128 + 128);
+        uBuffer[rotOffset + 1] = ((s.rot[1] / norm) * 128 + 128);
+        uBuffer[rotOffset + 2] = ((s.rot[2] / norm) * 128 + 128);
+        uBuffer[rotOffset + 3] = ((s.rot[3] / norm) * 128 + 128);
 
-        u_buffer[i * rowLength + 34] = 4; // is_track bit
+        uBuffer[i * rowLength + 34] = 4; // is_track bit
     }
 
     return new Uint8Array(buffer);
@@ -1060,7 +1073,7 @@ function createWorker(self) {
     let vertexCount = 0;
     let viewProj;
     let rowLength = 10 * 4;
-    let floats_per_splat = 10;
+    let floatsPerSplat = 10;
     let lastProj = [];
     let depthIndex = new Uint32Array();
     let lastVertexCount = 0;
@@ -1103,37 +1116,37 @@ function createWorker(self) {
 
     function generateTexture() {
         if (!buffer) return;
-        const f_buffer = new Float32Array(buffer);
-        const u_buffer = new Uint8Array(buffer);
+        const fBuffer = new Float32Array(buffer);
+        const uBuffer = new Uint8Array(buffer);
 
         var texwidth = 1024 * 2;
         var texheight = Math.ceil((2 * vertexCount) / texwidth);
         var texdata = new Uint32Array(texwidth * texheight * 4);
-        var texdata_c = new Uint8Array(texdata.buffer);
-        var texdata_f = new Float32Array(texdata.buffer);
+        var texdataC = new Uint8Array(texdata.buffer);
+        var texdataF = new Float32Array(texdata.buffer);
 
         for (let i = 0; i < vertexCount; i++) {
-            texdata_f[8 * i + 0] = f_buffer[floats_per_splat * i + 0];
-            texdata_f[8 * i + 1] = f_buffer[floats_per_splat * i + 1];
-            texdata_f[8 * i + 2] = f_buffer[floats_per_splat * i + 2];
-            const visibility = u_buffer[rowLength * i + 34];
+            texdataF[8 * i + 0] = fBuffer[floatsPerSplat * i + 0];
+            texdataF[8 * i + 1] = fBuffer[floatsPerSplat * i + 1];
+            texdataF[8 * i + 2] = fBuffer[floatsPerSplat * i + 2];
+            const visibility = uBuffer[rowLength * i + 34];
             texdata[8 * i + 3] = visibility << 16;
 
-            texdata_c[4 * (8 * i + 7) + 0] = u_buffer[rowLength * i + 24 + 0];
-            texdata_c[4 * (8 * i + 7) + 1] = u_buffer[rowLength * i + 24 + 1];
-            texdata_c[4 * (8 * i + 7) + 2] = u_buffer[rowLength * i + 24 + 2];
-            texdata_c[4 * (8 * i + 7) + 3] = u_buffer[rowLength * i + 24 + 3];
+            texdataC[4 * (8 * i + 7) + 0] = uBuffer[rowLength * i + 24 + 0];
+            texdataC[4 * (8 * i + 7) + 1] = uBuffer[rowLength * i + 24 + 1];
+            texdataC[4 * (8 * i + 7) + 2] = uBuffer[rowLength * i + 24 + 2];
+            texdataC[4 * (8 * i + 7) + 3] = uBuffer[rowLength * i + 24 + 3];
 
             let scale = [
-                f_buffer[floats_per_splat * i + 3 + 0],
-                f_buffer[floats_per_splat * i + 3 + 1],
-                f_buffer[floats_per_splat * i + 3 + 2],
+                fBuffer[floatsPerSplat * i + 3 + 0],
+                fBuffer[floatsPerSplat * i + 3 + 1],
+                fBuffer[floatsPerSplat * i + 3 + 2],
             ];
             let rot = [
-                (u_buffer[rowLength * i + 28 + 0] - 128) / 128,
-                (u_buffer[rowLength * i + 28 + 1] - 128) / 128,
-                (u_buffer[rowLength * i + 28 + 2] - 128) / 128,
-                (u_buffer[rowLength * i + 28 + 3] - 128) / 128,
+                (uBuffer[rowLength * i + 28 + 0] - 128) / 128,
+                (uBuffer[rowLength * i + 28 + 1] - 128) / 128,
+                (uBuffer[rowLength * i + 28 + 2] - 128) / 128,
+                (uBuffer[rowLength * i + 28 + 3] - 128) / 128,
             ];
 
             const M = [
@@ -1167,7 +1180,7 @@ function createWorker(self) {
 
     function runSort(viewProj) {
         if (!buffer) return;
-        const f_buffer = new Float32Array(buffer);
+        const fBuffer = new Float32Array(buffer);
         if (lastVertexCount == vertexCount) {
             let dot =
                 lastProj[2] * viewProj[2] +
@@ -1187,9 +1200,9 @@ function createWorker(self) {
         let sizeList = new Int32Array(vertexCount);
         for (let i = 0; i < vertexCount; i++) {
             let depth =
-                ((viewProj[2] * f_buffer[floats_per_splat * i + 0] +
-                    viewProj[6] * f_buffer[floats_per_splat * i + 1] +
-                    viewProj[10] * f_buffer[floats_per_splat * i + 2]) *
+                ((viewProj[2] * fBuffer[floatsPerSplat * i + 0] +
+                    viewProj[6] * fBuffer[floatsPerSplat * i + 1] +
+                    viewProj[10] * fBuffer[floatsPerSplat * i + 2]) *
                     4096) |
                 0;
             sizeList[i] = depth;
@@ -1287,7 +1300,7 @@ void main () {
     if (!is_track) {
         Vrk = Vrk * cam.z * cam.z * 0.01;
     }
-    
+
     mat3 J = mat3(
         focal.x / cam.z, 0., -(focal.x * cam.x) / (cam.z * cam.z),
         0., -focal.y / cam.z, (focal.y * cam.y) / (cam.z * cam.z),
@@ -1365,30 +1378,30 @@ async function run() {
     gl.blendFuncSeparate(gl.ONE_MINUS_DST_ALPHA, gl.ONE, gl.ONE_MINUS_DST_ALPHA, gl.ONE);
     gl.blendEquationSeparate(gl.FUNC_ADD, gl.FUNC_ADD);
 
-    const u_projection = gl.getUniformLocation(program, "projection");
-    const u_viewport = gl.getUniformLocation(program, "viewport");
-    const u_focal = gl.getUniformLocation(program, "focal");
-    const u_view = gl.getUniformLocation(program, "view");
+    const uProjection = gl.getUniformLocation(program, "projection");
+    const uViewport = gl.getUniformLocation(program, "viewport");
+    const uFocal = gl.getUniformLocation(program, "focal");
+    const uView = gl.getUniformLocation(program, "view");
 
     const triangleVertices = new Float32Array([-2, -2, 2, -2, 2, 2, -2, 2]);
     const vertexBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
     gl.bufferData(gl.ARRAY_BUFFER, triangleVertices, gl.STATIC_DRAW);
-    const a_position = gl.getAttribLocation(program, "position");
-    gl.enableVertexAttribArray(a_position);
-    gl.vertexAttribPointer(a_position, 2, gl.FLOAT, false, 0, 0);
+    const aPosition = gl.getAttribLocation(program, "position");
+    gl.enableVertexAttribArray(aPosition);
+    gl.vertexAttribPointer(aPosition, 2, gl.FLOAT, false, 0, 0);
 
     var texture = gl.createTexture();
     gl.bindTexture(gl.TEXTURE_2D, texture);
-    var u_textureLocation = gl.getUniformLocation(program, "u_texture");
-    gl.uniform1i(u_textureLocation, 0);
+    var uTextureLocation = gl.getUniformLocation(program, "u_texture");
+    gl.uniform1i(uTextureLocation, 0);
 
     const indexBuffer = gl.createBuffer();
-    const a_index = gl.getAttribLocation(program, "index");
-    gl.enableVertexAttribArray(a_index);
+    const aIndex = gl.getAttribLocation(program, "index");
+    gl.enableVertexAttribArray(aIndex);
     gl.bindBuffer(gl.ARRAY_BUFFER, indexBuffer);
-    gl.vertexAttribIPointer(a_index, 1, gl.INT, false, 0, 0);
-    gl.vertexAttribDivisor(a_index, 1);
+    gl.vertexAttribIPointer(aIndex, 1, gl.INT, false, 0, 0);
+    gl.vertexAttribDivisor(aIndex, 1);
 
     let projectionMatrix;
     const resize = () => {
@@ -1396,10 +1409,10 @@ async function run() {
         gl.canvas.height = gl.canvas.clientHeight;
         gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
 
-        gl.uniform2fv(u_focal, new Float32Array([1160.0, 1160.0]));
+        gl.uniform2fv(uFocal, new Float32Array([1160.0, 1160.0]));
         projectionMatrix = getProjectionMatrix(1160.0, 1160.0, gl.canvas.width, gl.canvas.height);
-        gl.uniformMatrix4fv(u_projection, false, projectionMatrix);
-        gl.uniform2fv(u_viewport, new Float32Array([gl.canvas.width, gl.canvas.height]));
+        gl.uniformMatrix4fv(uProjection, false, projectionMatrix);
+        gl.uniform2fv(uViewport, new Float32Array([gl.canvas.width, gl.canvas.height]));
     };
     window.addEventListener("resize", resize);
     resize();
@@ -1434,7 +1447,7 @@ async function run() {
     };
 
     const frame = (now) => {
-        if(numFrames > 1 && playing && now - lastFrameTimeStamp > 1000 / scene_fps) {
+        if(numFrames > 1 && playing && now - lastFrameTimeStamp > 1000 / sceneFps) {
             currentFrame = (currentFrame + 1) % numFrames;
             document.getElementById("frame-slider").value = currentFrame;
             splatData = splatFrames[currentFrame];
@@ -1454,7 +1467,7 @@ async function run() {
 
         if (vertexCount > 0) {
             gl.useProgram(program);
-            gl.uniformMatrix4fv(u_view, false, viewMatrix);
+            gl.uniformMatrix4fv(uView, false, viewMatrix);
             gl.clear(gl.COLOR_BUFFER_BIT);
             gl.drawArraysInstanced(gl.TRIANGLE_FAN, 0, 4, vertexCount);
         } else {
@@ -1489,7 +1502,7 @@ async function run() {
                 }
             }
             const up = vec3.normalize(vec3.cross(fwd, right));
-            
+
             inv[0] = right[0]; inv[1] = right[1]; inv[2] = right[2];
             inv[4] = up[0]; inv[5] = up[1]; inv[6] = up[2];
             inv[8] = fwd[0]; inv[9] = fwd[1]; inv[10] = fwd[2];
@@ -1676,7 +1689,7 @@ async function run() {
 
 async function loadSplatFromUrl(url) {
     try {
-        document.getElementById('message').innerText = 'Loading example...';
+        document.getElementById('message').textContent = 'Loading example...';
         document.getElementById('message').style.display = 'flex';
         const response = await fetch(url);
         if (!response.ok) {
@@ -1686,7 +1699,7 @@ async function loadSplatFromUrl(url) {
         await loadCompressedSplat(buffer);
     } catch (error) {
         console.error('Error loading splat file from URL:', error);
-        document.getElementById('message').innerText = 'Failed to load example. Drag and drop a .splat file to begin.';
+        document.getElementById('message').textContent = 'Failed to load example. Drag and drop a .splat file to begin.';
         document.getElementById('message').style.display = 'flex';
     }
 }
@@ -1713,14 +1726,14 @@ async function loadCompressedSplat(compressedBuffer) {
     viewMatrix = newViewMatrix;
     viewMatrixAtLoad = newViewMatrix.slice();
 
-    const scale_modifier = dataView.getFloat32(offset, true); offset += 4;
-    const accumulation_step = dataView.getInt32(offset, true); offset += 4;
-    const track_history_length = dataView.getInt32(offset, true); offset += 4;
-    const track_opacity = dataView.getFloat32(offset, true); offset += 4;
-    const track_thickness = dataView.getFloat32(offset, true); offset += 4;
-    const track_color_repetition = dataView.getInt32(offset, true); offset += 4;
-    const camera_frustum_size = dataView.getFloat32(offset, true); offset += 4;
-    const track_percentage = dataView.getInt32(offset, true); offset += 4;
+    const scaleModifier = dataView.getFloat32(offset, true); offset += 4;
+    const accumulationStep = dataView.getInt32(offset, true); offset += 4;
+    const trackHistoryLength = dataView.getInt32(offset, true); offset += 4;
+    const trackOpacity = dataView.getFloat32(offset, true); offset += 4;
+    const trackThickness = dataView.getFloat32(offset, true); offset += 4;
+    const trackColorRepetition = dataView.getInt32(offset, true); offset += 4;
+    const cameraFrustumSize = dataView.getFloat32(offset, true); offset += 4;
+    const trackPercentage = dataView.getInt32(offset, true); offset += 4;
     let numDynamicPoints = dataView.getInt32(offset, true); offset += 4;
     let numStaticPoints = dataView.getInt32(offset, true); offset += 4;
     const isPointCloud = numStaticPoints === -1;
@@ -1728,21 +1741,21 @@ async function loadCompressedSplat(compressedBuffer) {
     const hasCameraPoses = dataView.getInt32(offset, true); offset += 4;
     const hasVideo = dataView.getInt32(offset, true); offset += 4;
     const numVideoFrames = dataView.getInt32(offset, true); offset += 4;
-    const dark_bg = dataView.getInt32(offset, true); offset += 4;
+    const darkBg = dataView.getInt32(offset, true); offset += 4;
 
     const visualization = document.querySelector('.visualization');
     const videoFrame = document.getElementById('video-frame');
-    if(dark_bg) {
+    if(darkBg) {
         visualization.style.backgroundColor = '#000';
-        if(videoFrame) videoFrame.style.boxShadow = '0px 0px 5px 0px rgba(255,255,255,0.5)';
+        if(videoFrame) videoFrame.style.boxShadow = '0 0 5px 0 rgba(255,255,255,0.5)';
     } else {
         visualization.style.backgroundColor = '#fff';
-        if(videoFrame) videoFrame.style.boxShadow = '0px 0px 5px 0px rgba(0,0,0,0.5)';
+        if(videoFrame) videoFrame.style.boxShadow = '0 0 5px 0 rgba(0,0,0,0.5)';
     }
 
-    camera_data = null;
+    cameraData = null;
     if(hasCameraPoses) {
-        camera_data = {poses: []};
+        cameraData = {poses: []};
         for(let i=0; i<numFrames; i++) {
             let pose = [[],[],[]];
             for(let r=0; r<3; r++) {
@@ -1751,7 +1764,7 @@ async function loadCompressedSplat(compressedBuffer) {
                     offset+=4;
                 }
             }
-            camera_data.poses.push(pose);
+            cameraData.poses.push(pose);
         }
     }
 
@@ -1773,9 +1786,9 @@ async function loadCompressedSplat(compressedBuffer) {
                 pcF32View[i*10+1] = dataView.getFloat32(offset+4, true) * splatScale;
                 pcF32View[i*10+2] = dataView.getFloat32(offset+8, true) * splatScale;
                 offset += 12;
-                pcF32View[i*10+3] = 0.04 * splatScale * scale_modifier;
-                pcF32View[i*10+4] = 0.04 * splatScale * scale_modifier;
-                pcF32View[i*10+5] = 0.04 * splatScale * scale_modifier;
+                pcF32View[i*10+3] = 0.04 * splatScale * scaleModifier;
+                pcF32View[i*10+4] = 0.04 * splatScale * scaleModifier;
+                pcF32View[i*10+5] = 0.04 * splatScale * scaleModifier;
                 pcU8View.set(new Uint8Array(buffer, offset, 4), i*40+24);
                 offset += 4;
                 pcU8View.set(quat, i*40+28);
@@ -1826,7 +1839,7 @@ async function loadCompressedSplat(compressedBuffer) {
             // Scale up/down based on shape
             videoFrame.onload = () => {
                 const aspect = videoFrame.naturalWidth / videoFrame.naturalHeight;
-                // If aspect ratio is wider than 1 (Landscape), lock Width to 35%. 
+                // If aspect ratio is wider than 1 (Landscape), lock Width to 35%.
                 // Otherwise (Portrait), lock Height to 50%.
                 if (aspect > 1) {
                     videoFrame.style.width = '35%';
@@ -1848,24 +1861,24 @@ async function loadCompressedSplat(compressedBuffer) {
     }
 
     if (isPointCloud && pointCloudBuffers.length > 0 && pointCloudBuffers[0].length > 0) {
-        const f_buffer = new Float32Array(pointCloudBuffers[0].buffer);
-        let sum_depth = 0;
+        const fBuffer = new Float32Array(pointCloudBuffers[0].buffer);
+        let sumDepth = 0;
         let count = 0;
         for (let i = 0; i < pointCloudBuffers[0].length / 40; i++) {
-            const p = [f_buffer[i*10], f_buffer[i*10+1], f_buffer[i*10+2]];
+            const p = [fBuffer[i*10], fBuffer[i*10+1], fBuffer[i*10+2]];
             if (!isNaN(p[0])) {
                 const depth = viewMatrixAtLoad[2]*p[0] + viewMatrixAtLoad[6]*p[1] + viewMatrixAtLoad[10]*p[2] + viewMatrixAtLoad[14];
                 if (depth > 0) {
-                  sum_depth += depth;
+                  sumDepth += depth;
                   count++;
                 }
             }
         }
-        const meanDepth = count > 0 ? sum_depth / count : 5.0;
+        const meanDepth = count > 0 ? sumDepth / count : 5.0;
         const invV = invert4(viewMatrixAtLoad);
         sceneCenter = [
-            invV[8]*meanDepth + invV[12], 
-            invV[9]*meanDepth + invV[13], 
+            invV[8]*meanDepth + invV[12],
+            invV[9]*meanDepth + invV[13],
             invV[10]*meanDepth + invV[14]
         ];
         const camPos = [invV[12], invV[13], invV[14]];
@@ -1878,8 +1891,8 @@ async function loadCompressedSplat(compressedBuffer) {
         const meanDepth = getMeanDepth(dynamicPoints, viewMatrixAtLoad);
         const invV = invert4(viewMatrixAtLoad);
         sceneCenter = [
-            invV[8]*meanDepth + invV[12], 
-            invV[9]*meanDepth + invV[13], 
+            invV[8]*meanDepth + invV[12],
+            invV[9]*meanDepth + invV[13],
             invV[10]*meanDepth + invV[14]
         ];
         const camPos = [invV[12], invV[13], invV[14]];
@@ -1892,8 +1905,8 @@ async function loadCompressedSplat(compressedBuffer) {
         const meanDepth = getMeanDepth(staticPoints.map(p => ({traj: [p.pos]})), viewMatrixAtLoad);
         const invV = invert4(viewMatrixAtLoad);
         sceneCenter = [
-            invV[8]*meanDepth + invV[12], 
-            invV[9]*meanDepth + invV[13], 
+            invV[8]*meanDepth + invV[12],
+            invV[9]*meanDepth + invV[13],
             invV[10]*meanDepth + invV[14]
         ];
         const camPos = [invV[12], invV[13], invV[14]];
@@ -1914,9 +1927,10 @@ async function loadCompressedSplat(compressedBuffer) {
     }
 
     const isPointCloudSample = pointCloudSamples.includes(currentSampleName) || isPointCloud;
-    let trackColors, dynamicPointsForTracks;
+    let trackColors;
+    let dynamicPointsForTracks;
     if(!isPointCloud) {
-        const trackRatio = track_percentage / 100.0;
+        const trackRatio = trackPercentage / 100.0;
         const step = Math.max(1, Math.round(1 / trackRatio));
         dynamicPointsForTracks = [];
         for(let i=0; i<dynamicPoints.length; i+=step) {
@@ -1925,11 +1939,11 @@ async function loadCompressedSplat(compressedBuffer) {
 
         const heights = dynamicPointsForTracks.map(p => p.traj[0][1]);
         const widths = dynamicPointsForTracks.map(p => p.traj[0][0]);
-        trackColors = getColorsFromCoords(heights, widths, track_color_repetition);
+        trackColors = getColorsFromCoords(heights, widths, trackColorRepetition);
 
         const numTotalPoints = numDynamicPoints + numStaticPoints;
         const pointCloudSplatFrameSize = numTotalPoints * 40;
-        
+
         for(let t=0; t<numFrames; t++) {
             const pcBuffer = new ArrayBuffer(pointCloudSplatFrameSize);
             const pcU8View = new Uint8Array(pcBuffer);
@@ -1940,9 +1954,9 @@ async function loadCompressedSplat(compressedBuffer) {
                 pcF32View[pointOffset*10+0] = p.traj[t][0];
                 pcF32View[pointOffset*10+1] = p.traj[t][1];
                 pcF32View[pointOffset*10+2] = p.traj[t][2];
-                pcF32View[pointOffset*10+3] = 0.04 * splatScale * scale_modifier;
-                pcF32View[pointOffset*10+4] = 0.04 * splatScale * scale_modifier;
-                pcF32View[pointOffset*10+5] = 0.04 * splatScale * scale_modifier;
+                pcF32View[pointOffset*10+3] = 0.04 * splatScale * scaleModifier;
+                pcF32View[pointOffset*10+4] = 0.04 * splatScale * scaleModifier;
+                pcF32View[pointOffset*10+5] = 0.04 * splatScale * scaleModifier;
                 pcU8View.set(p.rgba, pointOffset*40+24);
                 pcU8View.set(quat, pointOffset*40+28);
                 pcU8View[pointOffset*40+34] = 0; // Not a track
@@ -1953,9 +1967,9 @@ async function loadCompressedSplat(compressedBuffer) {
                 pcF32View[pointOffset*10+0] = p.pos[0];
                 pcF32View[pointOffset*10+1] = p.pos[1];
                 pcF32View[pointOffset*10+2] = p.pos[2];
-                pcF32View[pointOffset*10+3] = 0.04 * splatScale * scale_modifier;
-                pcF32View[pointOffset*10+4] = 0.04 * splatScale * scale_modifier;
-                pcF32View[pointOffset*10+5] = 0.04 * splatScale * scale_modifier;
+                pcF32View[pointOffset*10+3] = 0.04 * splatScale * scaleModifier;
+                pcF32View[pointOffset*10+4] = 0.04 * splatScale * scaleModifier;
+                pcF32View[pointOffset*10+5] = 0.04 * splatScale * scaleModifier;
                 pcU8View.set(p.rgba, pointOffset*40+24);
                 pcU8View.set(quat, pointOffset*40+28);
                 pcU8View[pointOffset*40+34] = 0; // Not a track
@@ -1970,20 +1984,20 @@ async function loadCompressedSplat(compressedBuffer) {
         if (isPointCloudSample) {
             const indices = [t];
             for(let i=0; i<t; i++) {
-                if (i % accumulation_step_point_clouds === 0) {
+                if (i % accumulationStepPointClouds === 0) {
                     indices.push(i);
                 }
             }
-            const unique_indices = [...new Set(indices)].sort((a, b) => a - b);
+            const uniqueIndices = [...new Set(indices)].sort((a, b) => a - b);
 
-            if (unique_indices.length <= 1) {
+            if (uniqueIndices.length <= 1) {
                 splatFrames.push(pointCloudBuffers[t]);
             } else {
-                const framesToCombine = unique_indices.map(i => pointCloudBuffers[i]);
-                let total_length = 0;
-                for(const f of framesToCombine) total_length += f.length;
+                const framesToCombine = uniqueIndices.map(i => pointCloudBuffers[i]);
+                let totalLength = 0;
+                for(const f of framesToCombine) totalLength += f.length;
 
-                const combinedFrame = new Uint8Array(total_length);
+                const combinedFrame = new Uint8Array(totalLength);
                 let currentOffset = 0;
                 for(const f of framesToCombine) {
                     combinedFrame.set(f, currentOffset);
@@ -1993,9 +2007,9 @@ async function loadCompressedSplat(compressedBuffer) {
             }
         } else {
             const trackSplats = generateTracksForFrame(t, dynamicPointsForTracks, trackColors, {
-                track_history_length,
-                track_opacity,
-                track_thickness,
+                trackHistoryLength,
+                trackOpacity,
+                trackThickness,
             });
             const pcBufferForFrame = pointCloudBuffers[t];
             const combinedFrame = new Uint8Array(pcBufferForFrame.byteLength + trackSplats.length);
@@ -2014,10 +2028,10 @@ async function loadCompressedSplat(compressedBuffer) {
         const playPauseBtn = document.getElementById("play-pause");
         function updatePlayPauseVisuals() {
             if (playing) {
-                playPauseBtn.innerHTML = "<span>&#9208;</span>";
+                playPauseBtn.innerHTML = '<svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" aria-hidden="true" focusable="false"><path fill="currentColor" d="M48 64C21.5 64 0 85.5 0 112V400c0 26.5 21.5 48 48 48H80c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H48zm192 0c-26.5 0-48 21.5-48 48V400c0 26.5 21.5 48 48 48h32c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H240z"/></svg>';
                 playPauseBtn.classList.remove("paused");
             } else {
-                playPauseBtn.innerHTML = "<span>&#9654;</span>";
+                playPauseBtn.innerHTML = '<svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" aria-hidden="true" focusable="false"><path fill="currentColor" d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg>';
                 playPauseBtn.classList.add("paused");
             }
         }
@@ -2157,15 +2171,15 @@ run();
                     if (!ytPlayerReady) return;
                     if (player.isMuted()) {
                         player.unMute();
-                        muteButton.innerHTML = '<i class="fa-solid fa-volume-high"></i>';
+                        muteButton.innerHTML = '<svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" aria-hidden="true" focusable="false"><path fill="currentColor" d="M533.6 32.5C598.5 85.2 640 165.8 640 256s-41.5 170.7-106.4 223.5c-10.3 8.4-25.4 6.8-33.8-3.5s-6.8-25.4 3.5-33.8C557.5 398.2 592 331.2 592 256s-34.5-142.2-88.7-186.3c-10.3-8.4-11.8-23.5-3.5-33.8s23.5-11.8 33.8-3.5zM473.1 107c43.2 35.2 70.9 88.9 70.9 149s-27.7 113.8-70.9 149c-10.3 8.4-25.4 6.8-33.8-3.5s-6.8-25.4 3.5-33.8C475.3 341.3 496 301.1 496 256s-20.7-85.3-53.2-111.8c-10.3-8.4-11.8-23.5-3.5-33.8s23.5-11.8 33.8-3.5zm-60.5 74.5C434.1 199.1 448 225.9 448 256s-13.9 56.9-35.4 74.5c-10.3 8.4-25.4 6.8-33.8-3.5s-6.8-25.4 3.5-33.8C393.1 284.4 400 271 400 256s-6.9-28.4-17.7-37.3c-10.3-8.4-11.8-23.5-3.5-33.8s23.5-11.8 33.8-3.5zM301.1 34.8C312.6 40 320 51.4 320 64l0 384c0 12.6-7.4 24-18.9 29.2s-25 3.1-34.4-5.3L131.8 352 64 352c-35.3 0-64-28.7-64-64l0-64c0-35.3 28.7-64 64-64l67.8 0L266.7 40.1c9.4-8.4 22.9-10.4 34.4-5.3z"/></svg>';
                     } else {
                         player.mute();
-                        muteButton.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
+                        muteButton.innerHTML = '<svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" aria-hidden="true" focusable="false"><path fill="currentColor" d="M301.1 34.8C312.6 40 320 51.4 320 64V448c0 12.6-7.4 24-18.9 29.2s-25 3.1-34.4-5.3L131.8 352H64c-35.3 0-64-28.7-64-64V224c0-35.3 28.7-64 64-64h67.8L266.7 40.1c9.4-8.4 22.9-10.4 34.4-5.3zM425 167l55 55 55-55c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-55 55 55 55c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-55-55-55 55c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l55-55-55-55c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0z"/></svg>';
                     }
                 });
             }
         }
-        
+
         document.addEventListener('DOMContentLoaded', () => {
             if (ytPlayerReady) {
                  setupYouTubeControls();
